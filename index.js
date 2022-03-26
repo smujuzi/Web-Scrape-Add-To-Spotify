@@ -5,12 +5,33 @@ var spotifyApi = new SpotifyWebApi({
   clientId: "bdf73ee3f11d400da9a68e04719fec20",
   clientSecret: "a90d4d6ec6324cde9f136fabff79f7e4",
   redirectUri: "http://localhost:8080/callback",
+  refreshToken:
+    "AQBvb1iDTZ-2y_jrsT9BzBgr0O2eJ2ct4vwYNo0KC_Hz7Yoc2Cu0rKV1hP7RRKVtTSknWbE5Enl8agUJE5v2O9mNXDi9HJS0Vp2VqXCfF4Ytfx4Ugxktpxsgo8Q7KPpA2MY",
 });
 
-spotifyApi.setAccessToken(
-  "BQDR5VA_ByAetMrus_ovUJZnWMO_cwWnOH12VCJxoA9tO1K9K0uvkr1FRXt1NYaJCB7V-ONCVrUabe4yu80FgUZjFas93OripK-s9vLVGpisgNzm-KhqO6wbfNXIMn54atEZHVLBiU5QVxV1YPgv0K-rE8BTFaPpnb-4ihrXE9bMFtLCZBiMYJO0FIGgjRP0h1QHpM19jaH3EwD7GBEnpg"
+// clientId, clientSecret and refreshToken has been set on the api object previous to this call.
+spotifyApi.refreshAccessToken().then(
+  function (data) {
+    console.log("The access token has been refreshed!");
+
+    // Save the access token so that it's used in future calls
+    spotifyApi.setAccessToken(data.body["access_token"]);
+    console.log(spotifyApi.getAccessToken());
+
+    // console.log("Data:");
+    // console.log(data);
+    console.log("The access token has been refreshed!");
+    // getUserPlaylists();
+    getCurrentUser();
+  },
+  function (err) {
+    console.log("Could not refresh access token", err);
+  }
 );
 
+// console.log(spotifyApi.getAccessToken());
+// console.log(spotifyApi.getRefreshToken());
+// console.log("Look above me");
 // spotifyApi.getArtistAlbums("43ZHCT0cAZBISjO8DG9PnE").then(
 //   function (data) {
 //     console.log("Artist albums", data.body);
@@ -31,21 +52,26 @@ spotifyApi.setAccessToken(
 // );
 
 // Get the authenticated user
-// spotifyApi.getMe().then(
-//   function (data) {
-//     console.log("Some information about the authenticated user", data.body);
-//   },
-//   function (err) {
-//     console.log("Something went wrong!", err);
-//   }
-// );
+function getCurrentUser() {
+  spotifyApi.getMe().then(
+    function (data) {
+      console.log("Some information about the authenticated user", data.body);
+    },
+    function (err) {
+      console.log("Something went wrong!", err);
+    }
+  );
+}
 
 // Get a user's playlists
-spotifyApi.getUserPlaylists("stuart5971").then(
-  function (data) {
-    console.log("Retrieved playlists", data.body);
-  },
-  function (err) {
-    console.log("Something went wrong!", err);
-  }
-);
+// function getUserPlaylists() {
+//   spotifyApi.getUserPlaylists("stuart5971").then(
+//     function (data) {
+//       console.log("INSIDE GET USER PLAYLISTS");
+//       console.log("Retrieved playlists", data.body);
+//     },
+//     function (err) {
+//       console.log("Something went wrong!", err);
+//     }
+//   );
+// }

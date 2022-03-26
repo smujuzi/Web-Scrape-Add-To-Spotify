@@ -9,6 +9,11 @@
   "author": "Stuart Kasekende",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "cli-table": "^0.3.11",
+    "fs": "0.0.1-security",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
     "spotify-web-api-node": "^5.0.2"
   }
 }
