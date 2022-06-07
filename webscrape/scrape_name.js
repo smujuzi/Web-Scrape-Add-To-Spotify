@@ -1,8 +1,15 @@
 const browserObject = require("./browser");
 const scraperController = require("./pageController");
+const rapGenius = require("./scrapeRapGenius");
+const officialCharts = require("./scrapeOfficialCharts");
+const mtv = require("./scrapeMTV");
 
-//Start the broswer and create a browser instance
-let browserInstance = browserObject.startBrowser();
+websites = [rapGenius, officialCharts, mtv];
 
-// Pass the broswer instance to the scraper controller
-scraperController(browserInstance);
+for (pageScraper of websites) {
+  //Start the broswer and create a browser instance
+  let browserInstance = browserObject.startBrowser();
+
+  // Pass the broswer instance to the scraper controller
+  scraperController(browserInstance, pageScraper);
+}
