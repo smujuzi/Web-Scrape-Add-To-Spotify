@@ -7,8 +7,7 @@ const scraper = {
 
     console.log("Rap Genius has loaded");
 
-    //  TESTING
-    const reviewElements = await page.$$(
+      const reviewElements = await page.$$(
       ".ChartSongdesktop__CoverAndTitle-sc-18658hh-0.jzapEV"
     );
 
@@ -20,6 +19,7 @@ const scraper = {
       console.log({ name });
     }
     console.log("Done");
+    page = await browser.close();
   },
 };
 module.exports = scraper;

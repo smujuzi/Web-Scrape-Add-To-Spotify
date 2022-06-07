@@ -12,6 +12,7 @@ const scraper = {
       console.log({ name });
     }
     console.log("Done");
+    page = await browser.close();
   },
 };
 module.exports = scraper;

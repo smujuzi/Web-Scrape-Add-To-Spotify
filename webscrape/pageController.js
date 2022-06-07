@@ -1,8 +1,4 @@
-// const pageScraper = require("./scrapeRapGenius");
-// const pageScraper = require("./scrapeOfficialCharts");
-const pageScraper = require("./scrapeMTV");
-// const pageScraper = require("./pageScraperMultiple");
-async function scrapeAll(browserInstance) {
+async function scrapeAll(browserInstance, pageScraper) {
   let browser;
   console.log("At top");
   try {
@@ -13,4 +9,5 @@ async function scrapeAll(browserInstance) {
   }
 }
 
-module.exports = (browserInstance) => scrapeAll(browserInstance);
+module.exports = (browserInstance, pageScraper) =>
+  scrapeAll(browserInstance, pageScraper);

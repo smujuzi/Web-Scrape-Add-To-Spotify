@@ -7,7 +7,6 @@ const scraper = {
 
     console.log("MTV has loaded");
 
-    //  TESTING
     const reviewElements = await page.$$(".promo-type-a.vimn_music_video");
 
     for (let i = 0; i < 10; i++) {
@@ -18,6 +17,7 @@ const scraper = {
       console.log({ name });
     }
     console.log("Done");
+    page = await browser.close();
   },
 };
 module.exports = scraper;
