@@ -19,9 +19,8 @@ async function runWebscrape() {
       currentHits: pageScraper.songTitle,
     });
   }
-  console.log(listOfSongs);
+  return listOfSongs;
 }
-runWebscrape();
 
 module.exports = {
   runWebscrape,
