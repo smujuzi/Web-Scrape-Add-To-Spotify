@@ -1,5 +1,7 @@
 const scraper = {
+  name: "official-charts",
   url: "https://www.officialcharts.com/charts/singles-chart/",
+  songTitle: [],
   async scraper(browser) {
     let page = await browser.newPage();
     await page.goto(this.url);
@@ -9,9 +11,8 @@ const scraper = {
     const reviewElements = await page.$$(".title");
     for (let i = 0; i < 10; i++) {
       const name = await reviewElements[i].$eval("a", (v) => v.textContent);
-      console.log({ name });
+      this.songTitle.push(name);
     }
-    console.log("Done");
     page = await browser.close();
   },
 };
