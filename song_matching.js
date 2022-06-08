@@ -56,7 +56,6 @@ async function getTopTracks() {
     console.log(listOfSongs);
     return listOfSongs;
   }
-  console.log(topTracks);
   return topTracks;
 }
 
@@ -105,9 +104,6 @@ async function songSimilarity(currentSong, songMap) {
   }
   return result;
 }
-
-getTopTracks();
-// getTopHitsSpotify();
 
 module.exports = {
   getAllSongs,
