@@ -80,13 +80,6 @@ async function createMapTest(listOfSongs) {
   const songMap = new Map();
 
   for (song of listOfSongs) {
-    // if (!songMap.has(song)) {
-    //   songMap.set(song, 1);
-    // } else {
-    //   frequencyOfSong = songMap.get(song);
-    //   frequencyOfSong++;
-    //   songMap.set(song, frequencyOfSong);
-    // }
     songKey = await songSimilarity(song, songMap);
 
     if (songKey == "N/A") {
