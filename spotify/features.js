@@ -62,8 +62,10 @@ async function getPlaylistTracks(playlistID) {
 // Create a public playlist
 async function newPlaylist() {
   playlistID = "";
+  timeStamp = new Date().toLocaleString().replace(",", "");
+  playlistTitle = "AWS Project: " + timeStamp;
   await spotifyApi
-    .createPlaylist("AWS IT WORKED 3", {
+    .createPlaylist(playlistTitle, {
       description: "My description",
       public: true,
     })
