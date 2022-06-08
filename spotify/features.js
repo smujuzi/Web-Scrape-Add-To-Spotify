@@ -1,18 +1,15 @@
 const setupSpotifyAPI = require("./setup");
 let spotifyApi;
-let songsToSearch = [
-  "AS IT WAS",
-  "ABOUT DAMN TIME",
-  "LATE NIGHT TALKING",
-  "FIRST CLASS",
-  "Bam Bam (Ft. Ed Sheeran)",
-];
+
+async function createTopTracksPLaylist(songsToSearch) {
+  await startSpotifyAPI();
+  playlistID = await newPlaylist();
+  songs = await getListOfSongs(songsToSearch);
+  await addTracksToPlaylist(playlistID, songs);
+}
 
 async function startSpotifyAPI() {
   spotifyApi = await setupSpotifyAPI.setupAPI();
-  playlistID = await createPlaylist();
-  songs = await getListOfSongs(songsToSearch);
-  await addTracksToPlaylist(playlistID, songs);
 }
 
 // Get the authenticated user
@@ -62,11 +59,11 @@ async function getPlaylistTracks(playlistID) {
   return tracklist;
 }
 
-// Create a private playlist
-async function createPlaylist() {
+// Create a public playlist
+async function newPlaylist() {
   playlistID = "";
   await spotifyApi
-    .createPlaylist("AWS Project 4", {
+    .createPlaylist("AWS IT WORKED 3", {
       description: "My description",
       public: true,
     })
@@ -84,9 +81,7 @@ async function createPlaylist() {
 // Add tracks to a playlist
 async function addTracksToPlaylist(playlistID, songs) {
   await spotifyApi.addTracksToPlaylist(playlistID, songs).then(
-    function (data) {
-      console.log("Added tracks to playlist!");
-    },
+    function (data) {},
     function (err) {
       console.log("Something went wrong!", err);
     }
@@ -115,14 +110,13 @@ async function searchSong(name) {
     }
   );
   return songDetail;
-} //uri: 'spotify:track:4LRPiXqCikLlN15c3yImP7'
-
-startSpotifyAPI();
+}
 
 module.exports = {
   getCurrentUser,
   getTodaysTopHitsPlaylist,
   getPlaylistTracks,
-  createPlaylist,
+  newPlaylist,
   addTracksToPlaylist,
+  createTopTracksPLaylist,
 };
