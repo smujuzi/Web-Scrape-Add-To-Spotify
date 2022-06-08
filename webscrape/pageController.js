@@ -1,6 +1,5 @@
 async function scrapeAll(browserInstance, pageScraper) {
   let browser;
-  console.log("At top");
   try {
     browser = await browserInstance;
     await pageScraper.scraper(browser);

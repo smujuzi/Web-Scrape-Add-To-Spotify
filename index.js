@@ -23,6 +23,8 @@ spotifyApi.refreshAccessToken().then(
     console.log("The access token has been refreshed!");
     // getUserPlaylists();
     getCurrentUser();
+    console.log("searchPlaylists:");
+    searchPlaylists();
   },
   function (err) {
     console.log("Could not refresh access token", err);
@@ -42,14 +44,33 @@ spotifyApi.refreshAccessToken().then(
 // );
 
 // Search playlists whose name or description contains 'workout'
-// spotifyApi.searchPlaylists("youtube").then(
-//   function (data) {
-//     console.log("Found playlists are", data.body);
-//   },
-//   function (err) {
-//     console.log("Something went wrong!", err);
-//   }
-// );
+function searchPlaylists() {
+  spotifyApi.searchPlaylists("Today's Top Hits").then(
+    function (data) {
+      playlist = data.body.playlists.items[0];
+      displayTracks(playlist.id);
+      // console.log("Found playlists are", playlist);
+    },
+    function (err) {
+      console.log("Something went wrong!", err);
+    }
+  );
+}
+
+function displayTracks(playlistID) {
+  spotifyApi.getPlaylistTracks(playlistID, { limit: 10 }).then(
+    function (data) {
+      tracks = data.body.items;
+      console.log("Found tracks are:");
+      for (track of tracks) {
+        console.log(track.track.name);
+      }
+    },
+    function (err) {
+      console.log("Something went wrong!", err);
+    }
+  );
+}
 
 // Get the authenticated user
 function getCurrentUser() {

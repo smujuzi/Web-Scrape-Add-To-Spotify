@@ -1,5 +1,7 @@
 const scraper = {
+  name: "mtv",
   url: "http://www.mtv.co.uk/music/charts",
+  songTitle: [],
   async scraper(browser) {
     let page = await browser.newPage();
     await page.goto(this.url);
@@ -14,9 +16,8 @@ const scraper = {
         ".promo-title",
         (v) => v.textContent
       );
-      console.log({ name });
+      this.songTitle.push(name);
     }
-    console.log("Done");
     page = await browser.close();
   },
 };
