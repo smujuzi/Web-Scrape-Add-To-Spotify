@@ -1,5 +1,4 @@
-// const scraping = require("./webscrape/scrape_name");
-const scraping = require("./test_scrape/scrapeHome");
+const scraping = require("./webscrape/scrapeHome");
 const spotifyFeatures = require("./spotify/features");
 const fuzz = require("fuzzball");
 
@@ -11,19 +10,6 @@ async function getScrapedSongs() {
   });
   return listOfScrapedSongs;
 }
-
-// async function getScrapedSongs() {
-//   console.log("puppeteer waaaaayyy");
-//   allScrapedWebsites = await scraping.runWebscrape();
-//   listOfScrapedSongs = [];
-//   for (website of allScrapedWebsites) {
-//     scrapedSongs = website.currentHits;
-//     for (song of scrapedSongs) {
-//       listOfScrapedSongs.push(song);
-//     }
-//   }
-//   return listOfScrapedSongs;
-// }
 
 async function getTopHitsSpotify() {
   topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist();
@@ -70,22 +56,6 @@ async function getTopTracks() {
   return topTracks;
 }
 
-// async function createMap(listOfSongs) {
-//   const songMap = new Map();
-
-//   for (song of listOfSongs) {
-//     if (!songMap.has(song)) {
-//       songMap.set(song, 1);
-//     } else {
-//       frequencyOfSong = songMap.get(song);
-//       frequencyOfSong++;
-//       songMap.set(song, frequencyOfSong);
-//     }
-//   }
-
-//   return songMap;
-// }
-
 async function createMapTest(listOfSongs) {
   const songMap = new Map();
 
@@ -100,7 +70,6 @@ async function createMapTest(listOfSongs) {
       songMap.set(songKey, frequencyOfSong);
     }
   }
-
   return songMap;
 }
 
