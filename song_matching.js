@@ -1,16 +1,13 @@
-const scraping = require("./webscrape/scrape_name");
+const scraping = require("./webscrape/scrapeHome");
 const spotifyFeatures = require("./spotify/features");
 const fuzz = require("fuzzball");
 
 async function getScrapedSongs() {
-  allScrapedWebsites = await scraping.runWebscrape();
+  console.log("Cheerio waaaaayyy");
   listOfScrapedSongs = [];
-  for (website of allScrapedWebsites) {
-    scrapedSongs = website.currentHits;
-    for (song of scrapedSongs) {
-      listOfScrapedSongs.push(song);
-    }
-  }
+  await scraping.runWebscrape().then(function (res) {
+    listOfScrapedSongs = scraping.listOfSongs[0]; //removes random blanks
+  });
   return listOfScrapedSongs;
 }
 
@@ -59,22 +56,6 @@ async function getTopTracks() {
   return topTracks;
 }
 
-// async function createMap(listOfSongs) {
-//   const songMap = new Map();
-
-//   for (song of listOfSongs) {
-//     if (!songMap.has(song)) {
-//       songMap.set(song, 1);
-//     } else {
-//       frequencyOfSong = songMap.get(song);
-//       frequencyOfSong++;
-//       songMap.set(song, frequencyOfSong);
-//     }
-//   }
-
-//   return songMap;
-// }
-
 async function createMapTest(listOfSongs) {
   const songMap = new Map();
 
@@ -89,7 +70,6 @@ async function createMapTest(listOfSongs) {
       songMap.set(songKey, frequencyOfSong);
     }
   }
-
   return songMap;
 }
 

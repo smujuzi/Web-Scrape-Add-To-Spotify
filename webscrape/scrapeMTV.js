@@ -1,24 +1,30 @@
-const scraper = {
-  name: "mtv",
-  url: "http://www.mtv.co.uk/music/charts",
-  songTitle: [],
-  async scraper(browser) {
-    let page = await browser.newPage();
-    await page.goto(this.url);
-    await page.waitForSelector(".page");
+const cheerio = require("cheerio");
+// External dependencies
+const axios = require("axios");
+songTitles = [];
 
-    console.log("MTV has loaded");
-
-    const reviewElements = await page.$$(".promo-type-a.vimn_music_video");
-
-    for (let i = 0; i < 10; i++) {
-      const name = await reviewElements[i].$eval(
-        ".promo-title",
-        (v) => v.textContent
-      );
-      this.songTitle.push(name);
-    }
-    page = await browser.close();
-  },
+const getWebsiteContent = async () => {
+  try {
+    const response = await axios.get("http://www.mtv.co.uk/music/charts");
+    const $ = cheerio.load(response.data);
+    count = 0;
+    $(".promo-type-a.vimn_music_video").each((i, el) => {
+      count = count + 1;
+      if (count <= 10) {
+        const title = $(el).find(".promo-title").text();
+        songTitles.push(title);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
-module.exports = scraper;
+
+// getWebsiteContent().then(function (res) {
+//   console.log(songTitles);
+// });
+
+module.exports = {
+  getWebsiteContent,
+  songTitles,
+};
