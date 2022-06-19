@@ -1,18 +1,29 @@
-const scraping = require("./webscrape/scrape_name");
+// const scraping = require("./webscrape/scrape_name");
+const scraping = require("./test_scrape/scrapeHome");
 const spotifyFeatures = require("./spotify/features");
 const fuzz = require("fuzzball");
 
 async function getScrapedSongs() {
-  allScrapedWebsites = await scraping.runWebscrape();
+  console.log("Cheerio waaaaayyy");
   listOfScrapedSongs = [];
-  for (website of allScrapedWebsites) {
-    scrapedSongs = website.currentHits;
-    for (song of scrapedSongs) {
-      listOfScrapedSongs.push(song);
-    }
-  }
+  await scraping.runWebscrape().then(function (res) {
+    listOfScrapedSongs = scraping.listOfSongs[0]; //removes random blanks
+  });
   return listOfScrapedSongs;
 }
+
+// async function getScrapedSongs() {
+//   console.log("puppeteer waaaaayyy");
+//   allScrapedWebsites = await scraping.runWebscrape();
+//   listOfScrapedSongs = [];
+//   for (website of allScrapedWebsites) {
+//     scrapedSongs = website.currentHits;
+//     for (song of scrapedSongs) {
+//       listOfScrapedSongs.push(song);
+//     }
+//   }
+//   return listOfScrapedSongs;
+// }
 
 async function getTopHitsSpotify() {
   topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist();

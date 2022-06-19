@@ -15,12 +15,12 @@ module.exports = {
 
 //LAMBDA FUNCTION
 
-exports.handler = async (event) => {
-  console.log("SHOW TIME");
-  recommendedSongs = await collectSongs.getTopTracks();
-  await spotifyFeatures.createTopTracksPLaylist(recommendedSongs);
-  console.log("DONE");
-};
+// exports.handler = async (event) => {
+//   console.log("SHOW TIME");
+//   recommendedSongs = await collectSongs.getTopTracks();
+//   await spotifyFeatures.createTopTracksPLaylist(recommendedSongs);
+//   console.log("DONE");
+// };
 
 // exports.handler = async (event) => {
 //   // TODO implement
