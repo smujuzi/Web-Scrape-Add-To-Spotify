@@ -7,14 +7,14 @@ Resources:
   LambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: sample6
+      FunctionName: sample9
       Description: First AWS Lambda function
       Runtime: nodejs16.x
       Role: arn:aws:iam::770653768231:role/service-role/sample-role-5flu1nuj
       Handler: index.handler
       Code:
         S3Bucket: webscrape-spotify-bucket
-        S3Key: "webscrapeSpotifyProject_19-06-2022_17-31-27.zip"
+        S3Key: !Ref "newFileName"
       Timeout: 30
       MemorySize: 128
       TracingConfig:
@@ -25,7 +25,7 @@ Resources:
     Properties:
       Name: webscrape-spotify-cloudwatch2
       Description: "ScheduledRule"
-      ScheduledExpression: "rate(1 minute)"
+      ScheduleExpression: "rate(12 hours)"
       State: "ENABLED"
       Targets:
         - Arn:

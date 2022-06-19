@@ -1,1 +1,1 @@
-bscraper\$new_fileName -Force
+mplate_old_version.yaml --parameters ParameterKey=newFileName,ParameterValue=$new_fileName
