@@ -5,6 +5,9 @@ const collectSongs = require("./song_matching");
 //   console.log("SHOW TIME");
 //   recommendedSongs = await collectSongs.getTopTracks();
 //   await spotifyFeatures.createTopTracksPLaylist(recommendedSongs);
+//   console.log()
+//   console.log("Recommended Songs:")
+//   console.log(recommendedSongs)
 //   console.log("DONE");
 // }
 // generateRecommendedSongsPlaylist();
@@ -19,14 +22,8 @@ exports.handler = async (event) => {
   console.log("SHOW TIME");
   recommendedSongs = await collectSongs.getTopTracks();
   await spotifyFeatures.createTopTracksPLaylist(recommendedSongs);
+  console.log();
+  console.log("Recommended Songs:");
+  console.log(recommendedSongs);
   console.log("DONE");
 };
-
-// exports.handler = async (event) => {
-//   // TODO implement
-//   const response = {
-//     statusCode: 200,
-//     body: JSON.stringify("Hello from Lambda!"),
-//   };
-//   return response;
-// };
