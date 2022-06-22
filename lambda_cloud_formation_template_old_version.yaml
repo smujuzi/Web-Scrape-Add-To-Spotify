@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Resources needed to deploy Spotify project
+Parameters:
+  newFileName:
+    Type: String
+Resources:
+  LambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: sample9
+      Description: First AWS Lambda function
+      Runtime: nodejs16.x
+      Role: arn:aws:iam::770653768231:role/service-role/sample-role-5flu1nuj
+      Handler: index.handler
+      Code:
+        S3Bucket: webscrape-spotify-bucket
+        S3Key: !Ref "newFileName"
+      Timeout: 30
+      MemorySize: 128
+      TracingConfig:
+        Mode: Active
+  ScheduledRule:
+    Type: AWS::Events::Rule
+    DependsOn: LambdaFunction
+    Properties:
+      Name: webscrape-spotify-cloudwatch2
+      Description: "ScheduledRule"
+      ScheduleExpression: "rate(8 hours)"
+      State: "ENABLED"
+      Targets:
+        - Arn:
+            Fn::GetAtt:
+              - "LambdaFunction"
+              - "Arn"
+          Id: "TargetFunc"
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    DependsOn: LambdaFunction
+    Properties:
+      FunctionName: !Ref "LambdaFunction"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn:
+        Fn::GetAtt:
+          - "ScheduledRule"
+          - "Arn"

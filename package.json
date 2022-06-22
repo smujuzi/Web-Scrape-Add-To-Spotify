@@ -9,6 +9,7 @@
   "author": "Stuart Kasekende",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.11",
     "cli-table": "^0.3.11",
     "fuzzball": "^2.1.2",
