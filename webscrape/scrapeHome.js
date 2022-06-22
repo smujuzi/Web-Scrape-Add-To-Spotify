@@ -16,11 +16,6 @@ async function runWebscrape() {
   });
 }
 
-// runWebscrape().then(function (res) {
-//   console.log("arrived 2");
-//   console.log(listOfSongs[0]); //removes blanks
-// });
-
 module.exports = {
   runWebscrape,
   listOfSongs,
