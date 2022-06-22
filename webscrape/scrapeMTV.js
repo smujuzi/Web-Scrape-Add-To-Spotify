@@ -28,10 +28,6 @@ const getWebsiteContent = async () => {
   }
 };
 
-// getWebsiteContent().then(function (res) {
-//   console.log(songTitles);
-// });
-
 module.exports = {
   getWebsiteContent,
   songTitles,
