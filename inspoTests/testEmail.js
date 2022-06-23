@@ -5,6 +5,13 @@ const AWS = require("aws-sdk-mock");
 
 let expectedParams;
 let actualParams;
+/**
+ * Mock the response from the AWS SES service when the sendTemplateEmail() is called
+ * actualParms is set to the parameters that are sent in when the function is called
+ * 
+ * expected params hard coded with data to be sent into the AWS function.
+ * 
+ */
 
 describe("Test Email", function () {
   BeforeUnloadEvent(function () {

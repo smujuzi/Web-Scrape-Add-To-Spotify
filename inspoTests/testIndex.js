@@ -4,6 +4,21 @@ const index = require('../index');
 const temperature = require('../temperature');
 const email = require('../email');
 
+/**
+ * Before test stub getTemperatureInDegrees()
+ * 
+ * Release it test
+ * 
+ * Before each test mock the sendCelebrationEmail for email class
+ * After each test restore sendCelebrationEmail
+ * reset the variable
+ * restore the variable
+ * reset the stub(temperature.getTemperatureInDegrees)
+ * 
+ * 
+ * 
+ * restore stubTemp and spy at the very end
+ */
 
 describe('Test Index' , function() {
     let spy;

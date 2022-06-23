@@ -5,7 +5,13 @@ const sinon = require("sinon");
 const axios = require("axios");
 
 //mock getTemperature in Degrees
-
+/**
+ * mocks temperature in Kampala
+ * specificially mocks the return from the api call
+ * API call = let response = await axios.get(`https://...`)
+ * const data = await response.data;
+ * return result...
+ * */
 describe("Test Temperature", function () {
   before(function () {
     const mock = sinon.stub(axios, "get");

@@ -6,7 +6,21 @@ const axios = require("axios");
 const AWS = require('aws-sdk-mock');
 
 const index = require('../index');
-const { isTag } = require("domhandler");
+
+/**
+ * For integration test need to mock internal calls in the code base
+ * such as the web api call and the AWS SES call
+ * 
+ * First scenario the api responses for both cities were mocked and looke dout for email not being called
+ * 
+ * Opposite done for 2nd function:
+ *  - Ensure email called
+ * - get difference between two temperatures
+ * 
+ * release and restore variables as needed.
+ * 
+ * 
+ */
 
 let expectedParams;
 let actualParams;
