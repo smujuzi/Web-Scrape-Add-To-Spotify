@@ -12,19 +12,6 @@ async function startSpotifyAPI() {
   spotifyApi = await setupSpotifyAPI.setupAPI();
 }
 
-// Get the authenticated user
-async function getCurrentUser() {
-  await startSpotifyAPI();
-  await spotifyApi.getMe().then(
-    function (data) {
-      console.log("Some information about the authenticated user", data.body);
-    },
-    function (err) {
-      console.log("Something went wrong!", err);
-    }
-  );
-}
-
 // Search playlists whose name or description contains 'Today's Top Hits'. Return first one
 async function getTodaysTopHitsPlaylist() {
   tracklist = [];
@@ -115,7 +102,6 @@ async function searchSong(name) {
 }
 
 module.exports = {
-  getCurrentUser,
   getTodaysTopHitsPlaylist,
   getPlaylistTracks,
   newPlaylist,
