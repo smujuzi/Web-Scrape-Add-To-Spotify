@@ -17,12 +17,12 @@ async function setupAPI() {
       spotifyApi.setAccessToken(data.body["access_token"]);
     },
     function (err) {
-      console.log("Could not refresh access token", err);
+      throw err;
     }
   );
   return spotifyApi;
 }
-
 module.exports = {
   setupAPI,
+  spotifyApi,
 };
