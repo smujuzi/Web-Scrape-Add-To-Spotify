@@ -95,6 +95,8 @@ async function searchSong(spotifyAPI, name) {
 }
 
 module.exports = {
+  spotifyApi,
+  startSpotifyAPI,
   getTodaysTopHitsPlaylist,
   getPlaylistTracks,
   newPlaylist,

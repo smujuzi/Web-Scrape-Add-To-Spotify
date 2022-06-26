@@ -1,7 +1,7 @@
-var SpotifyWebApi = require("spotify-web-api-node");
+let SpotifyWebApi = require("spotify-web-api-node");
 
 // credentials are optional
-var spotifyApi = new SpotifyWebApi({
+let spotifyApi = new SpotifyWebApi({
   clientId: "bdf73ee3f11d400da9a68e04719fec20",
   clientSecret: "a90d4d6ec6324cde9f136fabff79f7e4",
   redirectUri: "http://localhost:8080/callback",
@@ -20,9 +20,12 @@ async function setupAPI() {
       throw err;
     }
   );
+  
   return spotifyApi;
 }
+
+
+
 module.exports = {
   setupAPI,
-  spotifyApi,
 };
