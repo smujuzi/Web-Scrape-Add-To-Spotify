@@ -1,7 +1,10 @@
 async function createTopTracksPLaylist(spotifyAPI, recommendedSongs) {
   playlistID = await newPlaylist(spotifyAPI);
-  songs = await getListOfSongs(spotifyAPI, recommendedSongs);
-  await addTracksToPlaylist(spotifyAPI, playlistID, songs);
+  songs = await getListOfSpotifySongs(spotifyAPI, recommendedSongs);
+  finishedSongs = await songs;
+  statusCode = await addTracksToPlaylist(spotifyAPI, playlistID, songs);
+
+  return { statusCode, songs };
 }
 
 // Search playlists whose name or description contains 'Today's Top Hits'. Return first one
@@ -16,12 +19,12 @@ async function getTodaysTopHitsPlaylist(spotifyAPI) {
       console.log("Something went wrong!", err);
     }
   );
-  tracklist = await getPlaylistSongs(spotifyAPI, todaysTopHitsPlaylist.id);
+  tracklist = await getPlaylistTracks(spotifyAPI, todaysTopHitsPlaylist.id);
   return tracklist;
 }
 
 //Display Playlist tracks
-async function getPlaylistSongs(spotifyAPI, playlistID) {
+async function getPlaylistTracks(spotifyAPI, playlistID) {
   tracklist = [];
   await spotifyAPI.getPlaylistTracks(playlistID, { limit: 10 }).then(
     function (data) {
@@ -60,44 +63,43 @@ async function newPlaylist(spotifyAPI) {
 
 // Add tracks to a playlist
 async function addTracksToPlaylist(spotifyAPI, playlistID, songs) {
+  statusCode = "";
   await spotifyAPI.addTracksToPlaylist(playlistID, songs).then(
     function (data) {
-      console.log("Mission accomplished");
+      statusCode = data.statusCode;
     },
     function (err) {
       console.log("Something went wrong!", err);
     }
   );
+
+  return statusCode;
 }
 
 //Create list of Spotify Songs
-async function getListOfSongs(spotifyAPI, songsToSearch) {
+async function getListOfSpotifySongs(spotifyAPI, songsToSearch) {
   spotifySongs = [];
   for (song of songsToSearch) {
     spotifySongs.push(await searchSong(spotifyAPI, song));
   }
-
   return spotifySongs;
 }
 
 // Search tracks whose name, album or artist contains 'Love'
 async function searchSong(spotifyAPI, name) {
-  songDetail = "";
+  songUri = "";
   await spotifyAPI.searchTracks(name).then(
     function (data) {
-      songDetail = data.body.tracks.items[0].uri;
+      songUri = data.body.tracks.items[0].uri;
     },
     function (err) {
       console.error(err);
     }
   );
-  return songDetail;
+  return songUri;
 }
 
 module.exports = {
   getTodaysTopHitsPlaylist,
-  getPlaylistSongs,
-  newPlaylist,
-  addTracksToPlaylist,
   createTopTracksPLaylist,
 };
