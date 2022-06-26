@@ -10,23 +10,18 @@ async function getTodaysTopHitsPlaylist(spotifyAPI) {
   todaysTopHitsPlaylist = [];
   await spotifyAPI.searchPlaylists("Today's Top Hits").then(
     function (data) {
-      console.log("first");
       todaysTopHitsPlaylist = data.body.playlists.items[0];
-      console.log(todaysTopHitsPlaylist);
     },
     function (err) {
       console.log("Something went wrong!", err);
     }
   );
-  console.log("second");
   tracklist = await getPlaylistSongs(spotifyAPI, todaysTopHitsPlaylist.id);
   return tracklist;
 }
 
 //Display Playlist tracks
 async function getPlaylistSongs(spotifyAPI, playlistID) {
-  console.log("third");
-  console.log("id:", playlistID);
   tracklist = [];
   await spotifyAPI.getPlaylistTracks(playlistID, { limit: 10 }).then(
     function (data) {
