@@ -13,7 +13,7 @@ const spotifyFeatures = require("../spotify/features");
 //Create a list of spotify songs
 //Create Top Tracks Playlist/ Add Tracks to a playlist
 
-describe.only("Test Spotify Features", async function () {
+describe("Test Spotify Features", async function () {
   describe("Get Today's Top Hits Playlist", async function () {
     let mockSpotifyAPI;
 
