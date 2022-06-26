@@ -28,4 +28,5 @@ async function setupAPI() {
 
 module.exports = {
   setupAPI,
+  spotifyApi
 };
