@@ -10,8 +10,8 @@ async function getScrapedSongs() {
   return listOfScrapedSongs;
 }
 
-async function getTopHitsSpotify() {
-  topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist();
+async function getTopHitsSpotify(spotifyAPI) {
+  topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist(spotifyAPI);
   listOfTopHitsSongs = [];
   for (song of topHitsSpotify) {
     listOfTopHitsSongs.push(song);
@@ -20,9 +20,9 @@ async function getTopHitsSpotify() {
   return listOfTopHitsSongs;
 }
 
-async function getAllSongs() {
+async function getAllSongs(spotifyAPI) {
   listOfScrapedSongs = await getScrapedSongs();
-  listOfTopHitsSongs = await getTopHitsSpotify();
+  listOfTopHitsSongs = await getTopHitsSpotify(spotifyAPI);
 
   listOfAllSongs = [];
   for (song of listOfScrapedSongs) {
@@ -35,9 +35,9 @@ async function getAllSongs() {
   return listOfAllSongs;
 }
 
-async function getTopTracks() {
+async function getTopTracks(spotifyAPI) {
   topTracks = [];
-  listOfSongs = await getAllSongs();
+  listOfSongs = await getAllSongs(spotifyAPI);
   songMap = await createMapTest(listOfSongs);
 
   for (const [key, value] of songMap.entries()) {
