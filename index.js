@@ -11,3 +11,14 @@ exports.handler = async (event, context, callback) => {
   );
   return callback(null, response);
 };
+
+async function run() {
+  spotifyAPI = await spotifyAPI.setupAPI();
+  recommendedSongs = await collectSongs.getTopTracks(spotifyAPI);
+  const response = await spotifyFeatures.createTopTracksPLaylist(
+    spotifyAPI,
+    recommendedSongs
+  );
+}
+
+run();

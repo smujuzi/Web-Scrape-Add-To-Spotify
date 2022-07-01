@@ -1,4 +1,5 @@
 const cheerio = require("cheerio");
+const fs = require("fs");
 // External dependencies
 const axios = require("axios");
 songTitles = [];
@@ -15,6 +16,15 @@ const getWebsiteContent = async () => {
         Expires: "0",
       },
     });
+
+    // fs.writeFile(
+    //   "test/exampleWebsites/sampleRapGenius.html",
+    //   response.data,
+    //   (err) => {
+    //     if (err) throw err;
+    //   }
+    // );
+
     const $ = cheerio.load(response.data);
     count = 0;
     $(".ChartSongdesktop__CoverAndTitle-sc-18658hh-0.jzapEV").each((i, el) => {
@@ -22,13 +32,17 @@ const getWebsiteContent = async () => {
       if (count <= 10) {
         const title = $(el)
           .find(".ChartSongdesktop__Title-sc-18658hh-3.fODYHn")
-          .text();
+          .text()
+          .trim();
         songTitles.push(title);
       }
     });
   } catch (error) {
     console.error(error);
   }
+
+  console.log("Rap Genius Songs:");
+  console.log(songTitles);
 };
 
 module.exports = {
