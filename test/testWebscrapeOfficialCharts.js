@@ -50,7 +50,8 @@ describe("Test Official Charts Scrape", function () {
     it("Successfully returned expected Official Charts songs", async function () {
       let resultOfficialCharts = [];
       await scrapeOfficialCharts.getWebsiteContent().then(async function (res) {
-        resultOfficialCharts = await scrapeOfficialCharts.songTitles;
+        resultOfficialCharts =
+          await scrapeOfficialCharts.songTitlesOfficialCharts;
       });
       expect(resultOfficialCharts).to.eql(mockOfficialChartsSongs);
     });

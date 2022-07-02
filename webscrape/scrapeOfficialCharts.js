@@ -4,7 +4,7 @@ const fs = require("fs");
 // External dependencies
 const axios = require("axios");
 
-songTitles = [];
+songTitlesOfficialCharts = [];
 
 const getWebsiteContent = async () => {
   try {
@@ -28,7 +28,7 @@ const getWebsiteContent = async () => {
         const title = $(el).find("a").text().trim();
         // console.log("title:");
         // console.log(title);
-        songTitles.push(title);
+        songTitlesOfficialCharts.push(title);
       }
     });
   } catch (error) {
@@ -38,5 +38,5 @@ const getWebsiteContent = async () => {
 
 module.exports = {
   getWebsiteContent,
-  songTitles,
+  songTitlesOfficialCharts,
 };
