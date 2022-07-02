@@ -9,7 +9,7 @@ exports.handler = async (event, context, callback) => {
     spotifyAPI,
     recommendedSongs
   );
-  return callback(null, response);
+  return response;
 };
 
 async function run() {
