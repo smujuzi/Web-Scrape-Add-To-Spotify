@@ -1,5 +1,5 @@
 async function createTopTracksPLaylist(spotifyAPI, recommendedSongs) {
-  console.log("at top");
+  
   playlistID = await newPlaylist(spotifyAPI);
   finishedPlaylistID = await playlistID;
   songs = await getListOfSpotifySongs(spotifyAPI, recommendedSongs);
@@ -25,7 +25,6 @@ async function getTodaysTopHitsPlaylist(spotifyAPI) {
       console.log("Something went wrong!", err);
     }
   );
-  console.log("Today top:", todaysTopHitsPlaylist);
   tracklist = await getPlaylistTracks(spotifyAPI, todaysTopHitsPlaylist.id);
   return tracklist;
 }
@@ -49,7 +48,7 @@ async function getPlaylistTracks(spotifyAPI, playlistID) {
 
 // Create a public playlist
 async function newPlaylist(spotifyAPI) {
-  console.log("first");
+ 
   playlistID = "";
   timeStamp = new Date().toLocaleString().replace(",", "");
   playlistTitle = "AWS Project: " + timeStamp;
@@ -60,7 +59,7 @@ async function newPlaylist(spotifyAPI) {
     })
     .then(
       function (data) {
-        console.log("inside:", data);
+        
         playlistID = data.body.id;
       },
       function (err) {
@@ -72,7 +71,7 @@ async function newPlaylist(spotifyAPI) {
 
 // Add tracks to a playlist
 async function addTracksToPlaylist(spotifyAPI, playlistID, songs) {
-  console.log("third");
+  
   statusCode = "";
   await spotifyAPI.addTracksToPlaylist(playlistID, songs).then(
     function (data) {
@@ -88,7 +87,7 @@ async function addTracksToPlaylist(spotifyAPI, playlistID, songs) {
 
 //Create list of Spotify Songs
 async function getListOfSpotifySongs(spotifyAPI, songsToSearch) {
-  console.log("second");
+  
   spotifySongs = [];
   for (song of songsToSearch) {
     spotifySongs.push(await searchSong(spotifyAPI, song));
