@@ -7,13 +7,13 @@ let spotifyAPI = require("../spotify/setup");
 
 describe("Test Index", async function () {
   describe("Handler", async function () {
-    let mockSpotifyAPI;
+    let mockSpotifyAPIIndex;
     let mockRecommendedSongs;
     let mockPlaylistCreated;
     let fakeResponse = {};
 
     beforeEach(function () {
-      mockSpotifyAPI = sinon.stub(spotifyAPI, "setupAPI");
+      mockSpotifyAPIIndex = sinon.stub(spotifyAPI, "setupAPI");
       const fakeSpotifyAPI = {
         _credentials: {
           clientId: "abc",
@@ -23,7 +23,7 @@ describe("Test Index", async function () {
           accessToken: "bbb",
         },
       };
-      mockSpotifyAPI.withArgs().returns(Promise.resolve(fakeSpotifyAPI));
+      mockSpotifyAPIIndex.withArgs().returns(Promise.resolve(fakeSpotifyAPI));
 
       mockRecommendedSongs = sinon.stub(collectSongs, "getTopTracks");
       const fakeRecommendedSongs = [
@@ -58,8 +58,8 @@ describe("Test Index", async function () {
     });
 
     afterEach(function () {
-      mockSpotifyAPI.resetHistory();
-      mockSpotifyAPI.restore();
+      mockSpotifyAPIIndex.resetHistory();
+      mockSpotifyAPIIndex.restore();
 
       mockRecommendedSongs.resetHistory();
       mockRecommendedSongs.restore();
