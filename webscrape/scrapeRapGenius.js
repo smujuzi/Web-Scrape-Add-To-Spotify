@@ -2,9 +2,7 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 // External dependencies
 const axios = require("axios");
-songTitles = [];
-
-songTitles = [];
+songTitlesRap = [];
 
 const getWebsiteContent = async () => {
   try {
@@ -34,7 +32,10 @@ const getWebsiteContent = async () => {
           .find(".ChartSongdesktop__Title-sc-18658hh-3.fODYHn")
           .text()
           .trim();
-        songTitles.push(title);
+        songTitlesRap.push(title);
+        if (title == "RUNNING UP THAT HILL") {
+          console.log("YOOOOOOO");
+        }
       }
     });
   } catch (error) {
@@ -42,10 +43,10 @@ const getWebsiteContent = async () => {
   }
 
   console.log("Rap Genius Songs:");
-  console.log(songTitles);
+  console.log(songTitlesRap);
 };
 
 module.exports = {
   getWebsiteContent,
-  songTitles,
+  songTitlesRap,
 };

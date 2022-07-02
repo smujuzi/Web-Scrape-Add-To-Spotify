@@ -8,6 +8,7 @@ songTitles = [];
 
 const getWebsiteContent = async () => {
   try {
+    console.log("started");
     const response = await axios.get(
       "https://www.officialcharts.com/charts/singles-chart/",
       {
@@ -23,13 +24,13 @@ const getWebsiteContent = async () => {
     // console.log(response.data);
     // console.log("all above me");
 
-    fs.writeFile(
-      "test/exampleWebsites/sampleOfficialCharts.html",
-      response.data,
-      (err) => {
-        if (err) throw err;
-      }
-    );
+    // fs.writeFile(
+    //   "test/exampleWebsites/sampleOfficialCharts.html",
+    //   response.data,
+    //   (err) => {
+    //     if (err) throw err;
+    //   }
+    // );
 
     const $ = cheerio.load(response.data);
     count = 0;
@@ -37,12 +38,16 @@ const getWebsiteContent = async () => {
       count = count + 1;
       if (count <= 10) {
         const title = $(el).find("a").text().trim();
+        // console.log("title:");
+        // console.log(title);
         songTitles.push(title);
       }
     });
   } catch (error) {
     console.error(error);
   }
+  console.log("hereee");
+  console.log(songTitles);
 };
 
 module.exports = {

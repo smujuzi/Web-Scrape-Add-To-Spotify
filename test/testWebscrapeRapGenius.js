@@ -5,13 +5,13 @@ const path = require("path");
 const scrapeRapGenius = require("../webscrape/scrapeRapGenius");
 const fs = require("fs");
 
-describe.only("Test Rap Genius Scrape", function () {
+describe("Test Rap Genius Scrape", function () {
   //Good Refresh Token
   let mock;
-  describe("Valid Songs returned", function () {
+  describe("Rap Genius Valid Songs returned", function () {
     beforeEach(function () {
-      mock = sinon.stub(axios, "get");
-      mockSongs = [
+      mockR = sinon.stub(axios, "get");
+      mockRapGeniusSongs = [
         "Rich Minion",
         "Running Up That Hill (A Deal with God)",
         "Glimpse of Us",
@@ -26,11 +26,11 @@ describe.only("Test Rap Genius Scrape", function () {
 
       const html = fs
         .readFileSync(
-          path.resolve(__dirname, "./exampleWebsites/sampleRapGenius.html")
+          path.resolve(__dirname, "./exampleWebsites/sampleRapGeniusTemp.html")
         )
         .toString("utf-8");
 
-      mock
+      mockR
         .withArgs("https://genius.com/", {
           headers: {
             "Cache-Control": "no-cache",
@@ -46,16 +46,18 @@ describe.only("Test Rap Genius Scrape", function () {
     });
 
     it("Successfully returned expected Rap Genius songs", async function () {
-      result = [];
+      resultRapGenius = [];
       await scrapeRapGenius.getWebsiteContent().then(function (res) {
-        result = scrapeRapGenius.songTitles;
+        console.log("aha");
+        console.log(scrapeRapGenius.songTitlesRap);
+        resultRapGenius = scrapeRapGenius.songTitlesRap;
       });
-      expect(result).to.eql(mockSongs);
+      expect(resultRapGenius).to.eql(mockRapGeniusSongs);
     });
 
     afterEach(function () {
-      mock.restore();
-      mock.resetHistory();
+      mockR.restore();
+      mockR.resetHistory();
     });
   });
 });
