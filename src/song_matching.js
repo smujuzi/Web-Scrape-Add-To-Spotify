@@ -4,9 +4,12 @@ const fuzz = require("fuzzball");
 
 async function getScrapedSongs() {
   listOfScrapedSongs = [];
-  await scraping.runWebscrape().then(function (res) {
-    listOfScrapedSongs = scraping.listOfSongs[0]; //removes random blanks
-  });
+  arrayScrapedSongs = await scraping.runWebscrape();
+  for (array of arrayScrapedSongs) {
+    for (song of array) {
+      listOfScrapedSongs.push(song);
+    }
+  }
   return listOfScrapedSongs;
 }
 
