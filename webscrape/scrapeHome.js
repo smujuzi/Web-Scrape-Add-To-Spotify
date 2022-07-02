@@ -4,7 +4,7 @@ const mtv = require("./scrapeMTV");
 
 async function runWebscrape() {
   listOfSongs = [];
-  console.log("top");
+
   await mtv.getWebsiteContent().then(function (res) {
     listOfSongs.push(mtv.songTitles);
   });
@@ -15,7 +15,6 @@ async function runWebscrape() {
   await officialCharts.getWebsiteContent().then(function (res) {
     listOfSongs.push(officialCharts.songTitlesOfficialCharts);
   });
-
   return listOfSongs;
 }
 
