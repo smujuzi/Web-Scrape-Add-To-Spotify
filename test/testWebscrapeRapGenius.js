@@ -7,7 +7,7 @@ const fs = require("fs");
 
 describe("Test Rap Genius Scrape", function () {
   //Good Refresh Token
-  let mock;
+  let mockR;
   describe("Rap Genius Valid Songs returned", function () {
     beforeEach(function () {
       mockR = sinon.stub(axios, "get");
@@ -26,7 +26,7 @@ describe("Test Rap Genius Scrape", function () {
 
       const html = fs
         .readFileSync(
-          path.resolve(__dirname, "./exampleWebsites/sampleRapGeniusTemp.html")
+          path.resolve(__dirname, "./exampleWebsites/sampleRapGenius.html")
         )
         .toString("utf-8");
 
@@ -48,8 +48,6 @@ describe("Test Rap Genius Scrape", function () {
     it("Successfully returned expected Rap Genius songs", async function () {
       resultRapGenius = [];
       await scrapeRapGenius.getWebsiteContent().then(function (res) {
-        console.log("aha");
-        console.log(scrapeRapGenius.songTitlesRap);
         resultRapGenius = scrapeRapGenius.songTitlesRap;
       });
       expect(resultRapGenius).to.eql(mockRapGeniusSongs);

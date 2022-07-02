@@ -15,14 +15,6 @@ const getWebsiteContent = async () => {
       },
     });
 
-    // fs.writeFile(
-    //   "test/exampleWebsites/sampleRapGenius.html",
-    //   response.data,
-    //   (err) => {
-    //     if (err) throw err;
-    //   }
-    // );
-
     const $ = cheerio.load(response.data);
     count = 0;
     $(".ChartSongdesktop__CoverAndTitle-sc-18658hh-0.jzapEV").each((i, el) => {
@@ -33,17 +25,11 @@ const getWebsiteContent = async () => {
           .text()
           .trim();
         songTitlesRap.push(title);
-        if (title == "RUNNING UP THAT HILL") {
-          console.log("YOOOOOOO");
-        }
       }
     });
   } catch (error) {
     console.error(error);
   }
-
-  console.log("Rap Genius Songs:");
-  console.log(songTitlesRap);
 };
 
 module.exports = {

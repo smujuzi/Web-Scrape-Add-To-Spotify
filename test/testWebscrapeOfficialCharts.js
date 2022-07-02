@@ -6,11 +6,11 @@ const path = require("path");
 const scrapeOfficialCharts = require("../webscrape/scrapeOfficialCharts");
 const fs = require("fs");
 
-describe.only("Test Official Charts Scrape", function () {
+describe("Test Official Charts Scrape", function () {
   //Good Refresh Token
   let mockAxios;
 
-  describe.only("Official Charts Valid Songs returned", function () {
+  describe("Official Charts Valid Songs returned", function () {
     beforeEach(function () {
       mockAxios = sinon.stub(axios, "get");
       mockOfficialChartsSongs = [
