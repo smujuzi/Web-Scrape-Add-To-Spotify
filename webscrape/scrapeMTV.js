@@ -15,8 +15,6 @@ const getWebsiteContent = async () => {
         Expires: "0",
       },
     });
-    console.log("LOOKINSIDE");
-    console.log(response.data);
 
     fs.writeFile(
       "test/exampleWebsites/sampleMTV.html",
