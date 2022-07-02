@@ -4,6 +4,11 @@ const axios = require("axios");
 const path = require("path");
 const scrapeRapGenius = require("../webscrape/scrapeRapGenius");
 const fs = require("fs");
+const htmlRapGenius = fs
+  .readFileSync(
+    path.resolve(__dirname, "./exampleWebsites/sampleRapGenius.html")
+  )
+  .toString("utf-8");
 
 describe("Test Rap Genius Scrape", function () {
   //Good Refresh Token
@@ -23,13 +28,6 @@ describe("Test Rap Genius Scrape", function () {
         "Crazy Rap (Colt 45 & 2 Zig-Zags)",
         "Carolina",
       ];
-
-      const html = fs
-        .readFileSync(
-          path.resolve(__dirname, "./exampleWebsites/sampleRapGenius.html")
-        )
-        .toString("utf-8");
-
       mockR
         .withArgs("https://genius.com/", {
           headers: {
@@ -40,7 +38,7 @@ describe("Test Rap Genius Scrape", function () {
         })
         .returns(
           Promise.resolve({
-            data: html,
+            data: htmlRapGenius,
           })
         );
     });

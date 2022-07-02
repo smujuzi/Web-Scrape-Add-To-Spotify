@@ -1,6 +1,6 @@
-let SpotifyWebApi = require("spotify-web-api-node");
+const SpotifyWebApi = require("spotify-web-api-node");
 const credentials = require("../credentials-spotify.json");
-let spotifyApi = new SpotifyWebApi(credentials);
+const spotifyApi = new SpotifyWebApi(credentials);
 
 async function setupAPI() {
   // clientId, clientSecret and refreshToken has been set on the api object previous to this call.

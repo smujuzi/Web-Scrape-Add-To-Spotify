@@ -5,6 +5,11 @@ const axios = require("axios");
 const path = require("path");
 const scrapeOfficialCharts = require("../webscrape/scrapeOfficialCharts");
 const fs = require("fs");
+const htmlOfficial = fs
+  .readFileSync(
+    path.resolve(__dirname, "./exampleWebsites/sampleOfficialCharts.html")
+  )
+  .toString("utf-8");
 
 describe("Test Official Charts Scrape", function () {
   //Good Refresh Token
@@ -25,13 +30,6 @@ describe("Test Official Charts Scrape", function () {
         "IFTK",
         "LATE NIGHT TALKING",
       ];
-
-      const html = fs
-        .readFileSync(
-          path.resolve(__dirname, "./exampleWebsites/sampleOfficialCharts.html")
-        )
-        .toString("utf-8");
-
       mockAxios
         .withArgs("https://www.officialcharts.com/charts/singles-chart/", {
           headers: {
@@ -42,7 +40,7 @@ describe("Test Official Charts Scrape", function () {
         })
         .returns(
           Promise.resolve({
-            data: html,
+            data: htmlOfficial,
           })
         );
     });
