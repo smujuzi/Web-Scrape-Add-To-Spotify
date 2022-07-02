@@ -1,8 +1,10 @@
 const cheerio = require("cheerio");
+const fs = require("fs");
+
 // External dependencies
 const axios = require("axios");
 
-songTitles = [];
+songTitlesOfficialCharts = [];
 
 const getWebsiteContent = async () => {
   try {
@@ -17,13 +19,16 @@ const getWebsiteContent = async () => {
         },
       }
     );
+
     const $ = cheerio.load(response.data);
     count = 0;
     $(".title").each((i, el) => {
       count = count + 1;
       if (count <= 10) {
-        const title = $(el).find("a").text();
-        songTitles.push(title);
+        const title = $(el).find("a").text().trim();
+        // console.log("title:");
+        // console.log(title);
+        songTitlesOfficialCharts.push(title);
       }
     });
   } catch (error) {
@@ -33,5 +38,5 @@ const getWebsiteContent = async () => {
 
 module.exports = {
   getWebsiteContent,
-  songTitles,
+  songTitlesOfficialCharts,
 };

@@ -8,11 +8,11 @@ async function runWebscrape() {
     listOfSongs.push(mtv.songTitles);
   });
   await rapGenius.getWebsiteContent().then(function (res) {
-    listOfSongs.push(rapGenius.songTitles);
+    listOfSongs.push(rapGenius.songTitlesRap);
   });
 
   await officialCharts.getWebsiteContent().then(function (res) {
-    listOfSongs.push(officialCharts.songTitles);
+    listOfSongs.push(officialCharts.songTitlesOfficialCharts);
   });
 }
 

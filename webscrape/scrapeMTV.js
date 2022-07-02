@@ -1,4 +1,5 @@
 const cheerio = require("cheerio");
+const fs = require("fs");
 // External dependencies
 const axios = require("axios");
 
@@ -14,12 +15,21 @@ const getWebsiteContent = async () => {
         Expires: "0",
       },
     });
+
+    fs.writeFile(
+      "test/exampleWebsites/sampleMTV.html",
+      response.data,
+      (err) => {
+        if (err) throw err;
+      }
+    );
+
     const $ = cheerio.load(response.data);
     count = 0;
     $(".promo-type-a.vimn_music_video").each((i, el) => {
       count = count + 1;
       if (count <= 10) {
-        const title = $(el).find(".promo-title").text();
+        const title = $(el).find(".promo-title").text().trim();
         songTitles.push(title);
       }
     });

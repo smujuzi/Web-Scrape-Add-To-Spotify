@@ -13,6 +13,7 @@
     "cheerio": "^1.0.0-rc.11",
     "cli-table": "^0.3.11",
     "fuzzball": "^2.1.2",
+    "path": "^0.12.7",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "save-dev": "0.0.1-security",
