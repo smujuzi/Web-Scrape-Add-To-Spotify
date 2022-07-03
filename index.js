@@ -1,24 +1,15 @@
 const spotifyFeatures = require("./spotify/features");
 const collectSongs = require("./src/song_matching");
-let spotifyAPI = require("./spotify/setup");
+const spotifyAPI = require("./spotify/setup");
 
 exports.handler = async (event, context, callback) => {
-  spotifyAPI = await spotifyAPI.setupAPI();
-  recommendedSongs = await collectSongs.getTopTracks(spotifyAPI);
+  const spotifyAPIHand = await spotifyAPI.setupAPI();
+
+  const recommendedSongs = await collectSongs.getTopTracks(spotifyAPIHand);
+
   const response = await spotifyFeatures.createTopTracksPLaylist(
-    spotifyAPI,
+    spotifyAPIHand,
     recommendedSongs
   );
   return response;
 };
-
-async function run() {
-  spotifyAPI = await spotifyAPI.setupAPI();
-  recommendedSongs = await collectSongs.getTopTracks(spotifyAPI);
-  const response = await spotifyFeatures.createTopTracksPLaylist(
-    spotifyAPI,
-    recommendedSongs
-  );
-}
-
-run();

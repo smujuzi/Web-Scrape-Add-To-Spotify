@@ -3,18 +3,18 @@ const officialCharts = require("./scrapeOfficialCharts");
 const mtv = require("./scrapeMTV");
 
 async function runWebscrape() {
-  listOfSongs = [];
+  const listOfSongs = [];
 
   await mtv.getWebsiteContent().then(function (res) {
     listOfSongs.push(mtv.songTitles);
   });
-  await rapGenius.getWebsiteContent().then(function (res) {
-    listOfSongs.push(rapGenius.songTitlesRap);
-  });
 
-  await officialCharts.getWebsiteContent().then(function (res) {
-    listOfSongs.push(officialCharts.songTitlesOfficialCharts);
-  });
+  const rapSongs = await rapGenius.getWebsiteContent();
+  listOfSongs.push(rapSongs);
+
+  const offSongs = await officialCharts.getWebsiteContent();
+  listOfSongs.push(offSongs);
+
   return listOfSongs;
 }
 

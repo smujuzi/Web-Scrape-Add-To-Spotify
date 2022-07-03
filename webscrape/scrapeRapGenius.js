@@ -1,10 +1,9 @@
 const cheerio = require("cheerio");
-const fs = require("fs");
 // External dependencies
 const axios = require("axios");
-songTitlesRap = [];
 
 const getWebsiteContent = async () => {
+  let songTitlesRap = [];
   try {
     const response = await axios.get("https://genius.com/", {
       // query URL without using browser cache
@@ -30,9 +29,9 @@ const getWebsiteContent = async () => {
   } catch (error) {
     console.error(error);
   }
+  return songTitlesRap;
 };
 
 module.exports = {
   getWebsiteContent,
-  songTitlesRap,
 };

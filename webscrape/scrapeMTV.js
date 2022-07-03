@@ -1,9 +1,8 @@
 const cheerio = require("cheerio");
-const fs = require("fs");
 // External dependencies
 const axios = require("axios");
 
-songTitles = [];
+let songTitles = [];
 
 const getWebsiteContent = async () => {
   try {
@@ -15,14 +14,6 @@ const getWebsiteContent = async () => {
         Expires: "0",
       },
     });
-
-    fs.writeFile(
-      "test/exampleWebsites/sampleMTV.html",
-      response.data,
-      (err) => {
-        if (err) throw err;
-      }
-    );
 
     const $ = cheerio.load(response.data);
     count = 0;
