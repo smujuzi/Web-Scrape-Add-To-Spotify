@@ -2,7 +2,7 @@ const cheerio = require("cheerio");
 // External dependencies
 const axios = require("axios");
 
-songTitles = [];
+let songTitles = [];
 
 const getWebsiteContent = async () => {
   try {

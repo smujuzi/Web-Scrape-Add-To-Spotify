@@ -53,7 +53,12 @@ describe("Test Spotify Features", async function () {
       const actualTracklist = await spotifyFeatures.getTodaysTopHitsPlaylist(
         mockSpotifyAPIGet
       );
-      assert.equal(actualTracklist, tracklist);
+      result = [
+        'I Like You (A Happier Song) (with Doja Cat)',
+        'First Class',
+        'Woman'
+      ]
+      assert.deepEqual(actualTracklist, result);
     });
 
     afterEach(function () {

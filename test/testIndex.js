@@ -3,7 +3,8 @@ const sinon = require("sinon");
 const index = require("../index");
 const spotifyFeatures = require("../spotify/features");
 const collectSongs = require("../src/song_matching");
-let spotifyAPI = require("../spotify/setup");
+const spotifyAPI = require("../spotify/setup");
+const credentials = require("../credentials-spotify.json");
 
 describe("Test Index", async function () {
   describe("Handler", async function () {
@@ -15,13 +16,7 @@ describe("Test Index", async function () {
     beforeEach(function () {
       mockSpotifyAPIIndex = sinon.stub(spotifyAPI, "setupAPI");
       const fakeSpotifyAPI = {
-        _credentials: {
-          clientId: "abc",
-          clientSecret: "123",
-          redirectUri: "http://localhost:8080/callback",
-          refreshToken: "aaa",
-          accessToken: "bbb",
-        },
+        _credentials: credentials,
       };
       mockSpotifyAPIIndex.withArgs().returns(Promise.resolve(fakeSpotifyAPI));
 

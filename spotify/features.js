@@ -1,22 +1,15 @@
 async function createTopTracksPLaylist(spotifyAPI, recommendedSongs) {
-  
   playlistID = await newPlaylist(spotifyAPI);
-  finishedPlaylistID = await playlistID;
   songs = await getListOfSpotifySongs(spotifyAPI, recommendedSongs);
-  finishedSongs = await songs;
-  statusCode = await addTracksToPlaylist(
-    spotifyAPI,
-    finishedPlaylistID,
-    finishedSongs
-  );
+  statusCode = await addTracksToPlaylist(spotifyAPI, playlistID, songs);
 
-  return { statusCode, finishedSongs };
+  return { statusCode, songs };
 }
 
 // Search playlists whose name or description contains 'Today's Top Hits'. Return first one
 async function getTodaysTopHitsPlaylist(spotifyAPI) {
-  tracklist = [];
-  todaysTopHitsPlaylist = [];
+  let tracklist = [];
+  let todaysTopHitsPlaylist = [];
   await spotifyAPI.searchPlaylists("Today's Top Hits").then(
     function (data) {
       todaysTopHitsPlaylist = data.body.playlists.items[0];
@@ -31,10 +24,10 @@ async function getTodaysTopHitsPlaylist(spotifyAPI) {
 
 //Display Playlist tracks
 async function getPlaylistTracks(spotifyAPI, playlistID) {
-  tracklist = [];
+  let tracklist = [];
   await spotifyAPI.getPlaylistTracks(playlistID, { limit: 10 }).then(
     function (data) {
-      tracks = data.body.items;
+      const tracks = data.body.items;
       for (track of tracks) {
         tracklist.push(track.track.name);
       }
@@ -48,7 +41,6 @@ async function getPlaylistTracks(spotifyAPI, playlistID) {
 
 // Create a public playlist
 async function newPlaylist(spotifyAPI) {
- 
   playlistID = "";
   timeStamp = new Date().toLocaleString().replace(",", "");
   playlistTitle = "AWS Project: " + timeStamp;
@@ -59,7 +51,6 @@ async function newPlaylist(spotifyAPI) {
     })
     .then(
       function (data) {
-        
         playlistID = data.body.id;
       },
       function (err) {
@@ -69,9 +60,8 @@ async function newPlaylist(spotifyAPI) {
   return playlistID;
 }
 
-// Add tracks to a playlist
+
 async function addTracksToPlaylist(spotifyAPI, playlistID, songs) {
-  
   statusCode = "";
   await spotifyAPI.addTracksToPlaylist(playlistID, songs).then(
     function (data) {
@@ -85,9 +75,8 @@ async function addTracksToPlaylist(spotifyAPI, playlistID, songs) {
   return statusCode;
 }
 
-//Create list of Spotify Songs
+
 async function getListOfSpotifySongs(spotifyAPI, songsToSearch) {
-  
   spotifySongs = [];
   for (song of songsToSearch) {
     spotifySongs.push(await searchSong(spotifyAPI, song));
@@ -95,7 +84,7 @@ async function getListOfSpotifySongs(spotifyAPI, songsToSearch) {
   return spotifySongs;
 }
 
-// Search tracks whose name, album or artist contains 'Love'
+
 async function searchSong(spotifyAPI, name) {
   songUri = "";
   await spotifyAPI.searchTracks(name).then(

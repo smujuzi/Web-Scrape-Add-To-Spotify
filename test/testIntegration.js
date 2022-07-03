@@ -8,6 +8,7 @@ const spotifyApi = new SpotifyWebApi(credentials);
 let setupSpotify = require("../spotify/setup");
 //*** Set the spotify API variable in set up to this one.
 //OR mock the return from the SetupAPI*/
+const spotifyAPIP = require("../spotify/setup");
 
 const axios = require("axios");
 const path = require("path");
@@ -39,18 +40,10 @@ const rapURL = "https://genius.com/";
 describe("Test Integration", async function () {
   this.timeout(20000);
   describe("Project Test", async function () {
-    //stub spotifyAPI - > DONE
-    //stub getTodaysTopHitsPlaylist - DONE
-    //stub searchPlaylists - DONE
-    // stub getPlaylistTracks - DONE
 
-    //stub mtv -> DONE
-    // stub official charts - > DONE
-    //stub rap genius - > DONE
 
     let mockGet;
     let mockSpotifyAPIIntegration;
-    let sandboxSpotifyAPI = sinon.createSandbox();
     let mockSetupSpotify;
 
     beforeEach(function () {
@@ -96,6 +89,11 @@ describe("Test Integration", async function () {
             name: "Woman",
           },
         },
+        {
+          track: {
+            name: "Bad Habit",
+          },
+        },
       ];
       mockSpotifyAPIIntegration.searchPlaylists
         .withArgs("Today's Top Hits")
@@ -119,48 +117,39 @@ describe("Test Integration", async function () {
         );
 
       let id = 3;
-      let timeStamp = new Date().toLocaleString().replace(",", "");
-      let playlistTitle = "AWS Project: " + timeStamp;
 
-      let uriDaytona = "spotify:track:1234";
-      let uriChurhillDown = "spotify:track:5678";
-      let songs = [uriDaytona, uriChurhillDown];
 
-      let statusCode = 201;
+      let uriBadHabit = "spotify:track:1234";
+      let uriBreakMySoul = "spotify:track:5678";
 
-      mockSpotifyAPI.createPlaylist
-        .withArgs(playlistTitle, {
-          description: "My description",
-          public: true,
+      mockSpotifyAPIIntegration.createPlaylist.withArgs().returns(
+        Promise.resolve({
+          body: {
+            id: id,
+          },
         })
-        .returns(
-          Promise.resolve({
-            body: {
-              id: id,
-            },
-          })
-        );
+      );
 
-      mockSpotifyAPI.searchTracks.withArgs("Daytona").returns(
+      mockSpotifyAPIIntegration.searchTracks.withArgs("Bad Habit").returns(
         Promise.resolve({
           body: {
             tracks: {
               items: [
                 {
-                  uri: uriDaytona,
+                  uri: uriBadHabit,
                 },
               ],
             },
           },
         })
       );
-      mockSpotifyAPI.searchTracks.withArgs("Churchill Down").returns(
+      mockSpotifyAPIIntegration.searchTracks.withArgs("BREAK MY SOUL").returns(
         Promise.resolve({
           body: {
             tracks: {
               items: [
                 {
-                  uri: uriChurhillDown,
+                  uri: uriBreakMySoul,
                 },
               ],
             },
@@ -168,47 +157,34 @@ describe("Test Integration", async function () {
         })
       );
 
-      //   sandboxSpotifyAPI.stub(setupSpotify, "spotifyApi").value(mockSpotifyAPI);
-      //mock setup Spotify return
-      mockSetupSpotify = sinon.stub(setupSpotify, "setupAPI");
+
+      mockSetupSpotify = sinon.stub(spotifyAPIP, "setupAPI");
 
       mockSetupSpotify.withArgs().returns(mockSpotifyAPIIntegration);
     });
 
     it("Empty test", async function () {
-      console.log("Inside empty test");
       fakeResponse = {
         statusCode: 201,
-        songs: [
-          "spotify:track:4LRPiXqCikLlN15c3yImP7",
-          "spotify:track:2KukL7UlQ8TdvpaA7bY3ZJ",
-          "spotify:track:1PckUlxKqWQs3RlWXVBLw3",
-        ],
+        songs: ["spotify:track:1234", "spotify:track:5678"],
       };
       const response = await index.handler();
-      assert.equal(response, fakeResponse);
-      assert.equal(1, 1);
+      assert.deepEqual(response, fakeResponse);
     });
 
     afterEach(function () {
+      mockSetupSpotify.resetHistory();
+      mockSetupSpotify.restore();
       mockGet.resetHistory();
       mockGet.restore();
 
       mockSpotifyAPIIntegration.searchPlaylists.resetHistory();
       mockSpotifyAPIIntegration.getPlaylistTracks.resetHistory();
-      mockSpotifyAPI.searchTracks.resetHistory();
-      mockSpotifyAPI.createPlaylist.resetHistory();
-      mockSpotifyAPI.addTracksToPlaylist.resetHistory();
+      mockSpotifyAPIIntegration.searchTracks.resetHistory();
+      mockSpotifyAPIIntegration.createPlaylist.resetHistory();
+      mockSpotifyAPIIntegration.addTracksToPlaylist.resetHistory();
 
-      sandboxSpotifyAPI.resetHistory();
-      sandboxSpotifyAPI.restore();
 
-      mockSetupSpotify.resetHistory();
-      mockSetupSpotify.restore();
-
-      // let mockGet;
-      // let mockSpotifyAPI;
-      // let sandboxSpotifyAPI = sinon.createSandbox();
     });
   });
 });

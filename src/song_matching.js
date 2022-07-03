@@ -3,8 +3,8 @@ const spotifyFeatures = require("../spotify/features");
 const fuzz = require("fuzzball");
 
 async function getScrapedSongs() {
-  listOfScrapedSongs = [];
-  arrayScrapedSongs = await scraping.runWebscrape();
+  let listOfScrapedSongs = [];
+  const arrayScrapedSongs = await scraping.runWebscrape();
   for (array of arrayScrapedSongs) {
     for (song of array) {
       listOfScrapedSongs.push(song);
@@ -14,8 +14,10 @@ async function getScrapedSongs() {
 }
 
 async function getTopHitsSpotify(spotifyAPI) {
-  topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist(spotifyAPI);
-  listOfTopHitsSongs = [];
+  const topHitsSpotify = await spotifyFeatures.getTodaysTopHitsPlaylist(
+    spotifyAPI
+  );
+  let listOfTopHitsSongs = [];
   for (song of topHitsSpotify) {
     listOfTopHitsSongs.push(song);
   }
@@ -24,10 +26,10 @@ async function getTopHitsSpotify(spotifyAPI) {
 }
 
 async function getAllSongs(spotifyAPI) {
-  listOfScrapedSongs = await getScrapedSongs();
-  listOfTopHitsSongs = await getTopHitsSpotify(spotifyAPI);
+  const listOfScrapedSongs = await getScrapedSongs();
+  const listOfTopHitsSongs = await getTopHitsSpotify(spotifyAPI);
 
-  listOfAllSongs = [];
+  let listOfAllSongs = [];
   for (song of listOfScrapedSongs) {
     listOfAllSongs.push(song);
   }
@@ -39,10 +41,9 @@ async function getAllSongs(spotifyAPI) {
 }
 
 async function getTopTracks(spotifyAPI) {
-  topTracks = [];
-  listOfSongs = await getAllSongs(spotifyAPI);
-  songMap = await createMapTest(listOfSongs);
-
+  let topTracks = [];
+  const listOfSongs = await getAllSongs(spotifyAPI);
+  const songMap = await createMapTest(listOfSongs);
   for (const [key, value] of songMap.entries()) {
     if (value > 1) {
       topTracks.push(key);
@@ -55,10 +56,10 @@ async function getTopTracks(spotifyAPI) {
 }
 
 async function createMapTest(listOfSongs) {
-  const songMap = new Map();
+  let songMap = new Map();
 
   for (song of listOfSongs) {
-    songKey = await songSimilarity(song, songMap);
+    let songKey = await songSimilarity(song, songMap);
 
     if (songKey == "N/A") {
       songMap.set(song, 1);
@@ -72,9 +73,9 @@ async function createMapTest(listOfSongs) {
 }
 
 async function songSimilarity(currentSong, songMap) {
-  result = "N/A";
+  let result = "N/A";
   for (const [key, value] of songMap.entries()) {
-    comparison = fuzz.ratio(currentSong, key);
+    const comparison = fuzz.ratio(currentSong, key);
     if (comparison > 90) {
       result = key;
       break;

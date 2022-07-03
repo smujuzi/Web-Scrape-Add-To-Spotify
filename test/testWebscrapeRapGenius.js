@@ -11,23 +11,11 @@ const htmlRapGenius = fs
   .toString("utf-8");
 
 describe("Test Rap Genius Scrape", function () {
-  //Good Refresh Token
   let mockR;
   describe("Rap Genius Valid Songs returned", function () {
     beforeEach(function () {
       mockR = sinon.stub(axios, "get");
-      mockRapGeniusSongs = [
-        "Rich Minion",
-        "Running Up That Hill (A Deal with God)",
-        "Glimpse of Us",
-        "Left and Right",
-        "Jimmy Cooks",
-        "From The D 2 The LBC",
-        "Bad Habit",
-        "BREAK MY SOUL",
-        "Crazy Rap (Colt 45 & 2 Zig-Zags)",
-        "Carolina",
-      ];
+
       mockR
         .withArgs("https://genius.com/", {
           headers: {
@@ -44,10 +32,20 @@ describe("Test Rap Genius Scrape", function () {
     });
 
     it("Successfully returned expected Rap Genius songs", async function () {
-      resultRapGenius = [];
-      await scrapeRapGenius.getWebsiteContent().then(function (res) {
-        resultRapGenius = scrapeRapGenius.songTitlesRap;
-      });
+      resultRapGenius = await scrapeRapGenius.getWebsiteContent();
+
+      mockRapGeniusSongs = [
+        "Rich Minion",
+        "Running Up That Hill (A Deal with God)",
+        "Glimpse of Us",
+        "Left and Right",
+        "Jimmy Cooks",
+        "From The D 2 The LBC",
+        "Bad Habit",
+        "BREAK MY SOUL",
+        "Crazy Rap (Colt 45 & 2 Zig-Zags)",
+        "Carolina",
+      ];
       expect(resultRapGenius).to.eql(mockRapGeniusSongs);
     });
 

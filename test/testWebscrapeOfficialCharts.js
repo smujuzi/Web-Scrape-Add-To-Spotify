@@ -1,5 +1,4 @@
 const expect = require("chai").expect;
-const assert = require("chai").assert;
 const sinon = require("sinon");
 const axios = require("axios");
 const path = require("path");
@@ -18,18 +17,6 @@ describe("Test Official Charts Scrape", function () {
   describe("Official Charts Valid Songs returned", function () {
     beforeEach(function () {
       mockAxios = sinon.stub(axios, "get");
-      mockOfficialChartsSongs = [
-        "RUNNING UP THAT HILL",
-        "AFRAID TO FEEL",
-        "AS IT WAS",
-        "BREAK MY SOUL",
-        "GREEN GREEN GRASS",
-        "GO",
-        "ABOUT DAMN TIME",
-        "MASSIVE",
-        "IFTK",
-        "LATE NIGHT TALKING",
-      ];
       mockAxios
         .withArgs("https://www.officialcharts.com/charts/singles-chart/", {
           headers: {
@@ -46,11 +33,20 @@ describe("Test Official Charts Scrape", function () {
     });
 
     it("Successfully returned expected Official Charts songs", async function () {
-      let resultOfficialCharts = [];
-      await scrapeOfficialCharts.getWebsiteContent().then(async function (res) {
-        resultOfficialCharts =
-          await scrapeOfficialCharts.songTitlesOfficialCharts;
-      });
+      const resultOfficialCharts =
+        await scrapeOfficialCharts.getWebsiteContent();
+      mockOfficialChartsSongs = [
+        "RUNNING UP THAT HILL",
+        "AFRAID TO FEEL",
+        "AS IT WAS",
+        "BREAK MY SOUL",
+        "GREEN GREEN GRASS",
+        "GO",
+        "ABOUT DAMN TIME",
+        "MASSIVE",
+        "IFTK",
+        "LATE NIGHT TALKING",
+      ];
       expect(resultOfficialCharts).to.eql(mockOfficialChartsSongs);
     });
 
