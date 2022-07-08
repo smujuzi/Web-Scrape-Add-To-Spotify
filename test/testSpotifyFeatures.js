@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const sinon = require("sinon");
 const spotifyFeatures = require("../spotify/features");
+const sampleTracklists = require("./exampleData/sampleTracklists");
 
 describe("Test Spotify Features", async function () {
   describe("Get Today's Top Hits Playlist", async function () {
@@ -14,23 +15,7 @@ describe("Test Spotify Features", async function () {
       mockPlaylist = {
         id: 3,
       };
-      tracklist = [
-        {
-          track: {
-            name: "I Like You (A Happier Song) (with Doja Cat)",
-          },
-        },
-        {
-          track: {
-            name: "First Class",
-          },
-        },
-        {
-          track: {
-            name: "Woman",
-          },
-        },
-      ];
+      tracklist = sampleTracklists.getTracklistThree();
       mockSpotifyAPIGet.searchPlaylists.withArgs("Today's Top Hits").returns(
         Promise.resolve({
           body: {
@@ -54,10 +39,10 @@ describe("Test Spotify Features", async function () {
         mockSpotifyAPIGet
       );
       result = [
-        'I Like You (A Happier Song) (with Doja Cat)',
-        'First Class',
-        'Woman'
-      ]
+        "I Like You (A Happier Song) (with Doja Cat)",
+        "First Class",
+        "Woman",
+      ];
       assert.deepEqual(actualTracklist, result);
     });
 
