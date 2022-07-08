@@ -1,5 +1,4 @@
 const expect = require("chai").expect;
-const assert = require("chai").assert;
 const sinon = require("sinon");
 const axios = require("axios");
 const path = require("path");

@@ -9,6 +9,7 @@ const htmlRapGenius = fs
     path.resolve(__dirname, "./exampleWebsites/sampleRapGenius.html")
   )
   .toString("utf-8");
+const sampleSongs = require("./exampleData/sampleSongs");
 
 describe("Test Rap Genius Scrape", function () {
   let mockR;
@@ -34,18 +35,7 @@ describe("Test Rap Genius Scrape", function () {
     it("Successfully returned expected Rap Genius songs", async function () {
       resultRapGenius = await scrapeRapGenius.getWebsiteContent();
 
-      mockRapGeniusSongs = [
-        "Rich Minion",
-        "Running Up That Hill (A Deal with God)",
-        "Glimpse of Us",
-        "Left and Right",
-        "Jimmy Cooks",
-        "From The D 2 The LBC",
-        "Bad Habit",
-        "BREAK MY SOUL",
-        "Crazy Rap (Colt 45 & 2 Zig-Zags)",
-        "Carolina",
-      ];
+      mockRapGeniusSongs = sampleSongs.getMockRapGeniusSongs();
       expect(resultRapGenius).to.eql(mockRapGeniusSongs);
     });
 

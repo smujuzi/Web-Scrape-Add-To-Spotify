@@ -1,15 +1,9 @@
 const assert = require("chai").assert;
 const sinon = require("sinon");
 const index = require("../index");
-
 const SpotifyWebApi = require("spotify-web-api-node");
 const credentials = require("../credentials-spotify.json");
-const spotifyApi = new SpotifyWebApi(credentials);
-let setupSpotify = require("../spotify/setup");
-//*** Set the spotify API variable in set up to this one.
-//OR mock the return from the SetupAPI*/
 const spotifyAPIP = require("../spotify/setup");
-
 const axios = require("axios");
 const path = require("path");
 const fs = require("fs");
@@ -37,11 +31,11 @@ const mtvURL = "http://www.mtv.co.uk/music/charts";
 const officialURL = "https://www.officialcharts.com/charts/singles-chart/";
 const rapURL = "https://genius.com/";
 
+const sampleTracklists = require("./exampleData/sampleTracklists");
+
 describe("Test Integration", async function () {
   this.timeout(20000);
   describe("Project Test", async function () {
-
-
     let mockGet;
     let mockSpotifyAPIIntegration;
     let mockSetupSpotify;
@@ -60,7 +54,7 @@ describe("Test Integration", async function () {
         .returns(Promise.resolve({ data: htmlRapGenius }));
 
       mockSpotifyAPIIntegration = {
-        _credentials: credentials, //May have to make this sinon.stub() too
+        _credentials: credentials,
         searchPlaylists: sinon.stub(),
         getPlaylistTracks: sinon.stub(),
         createPlaylist: sinon.stub(),
@@ -73,28 +67,7 @@ describe("Test Integration", async function () {
       mockPlaylist = {
         id: 3,
       };
-      tracklist = [
-        {
-          track: {
-            name: "I Like You (A Happier Song) (with Doja Cat)",
-          },
-        },
-        {
-          track: {
-            name: "First Class",
-          },
-        },
-        {
-          track: {
-            name: "Woman",
-          },
-        },
-        {
-          track: {
-            name: "Bad Habit",
-          },
-        },
-      ];
+      tracklist = sampleTracklists.getTracklistFour();
       mockSpotifyAPIIntegration.searchPlaylists
         .withArgs("Today's Top Hits")
         .returns(
@@ -117,7 +90,6 @@ describe("Test Integration", async function () {
         );
 
       let id = 3;
-
 
       let uriBadHabit = "spotify:track:1234";
       let uriBreakMySoul = "spotify:track:5678";
@@ -157,7 +129,6 @@ describe("Test Integration", async function () {
         })
       );
 
-
       mockSetupSpotify = sinon.stub(spotifyAPIP, "setupAPI");
 
       mockSetupSpotify.withArgs().returns(mockSpotifyAPIIntegration);
@@ -183,8 +154,6 @@ describe("Test Integration", async function () {
       mockSpotifyAPIIntegration.searchTracks.resetHistory();
       mockSpotifyAPIIntegration.createPlaylist.resetHistory();
       mockSpotifyAPIIntegration.addTracksToPlaylist.resetHistory();
-
-
     });
   });
 });

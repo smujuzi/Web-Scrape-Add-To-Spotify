@@ -9,6 +9,7 @@ const htmlOfficial = fs
     path.resolve(__dirname, "./exampleWebsites/sampleOfficialCharts.html")
   )
   .toString("utf-8");
+const sampleSongs = require("./exampleData/sampleSongs");
 
 describe("Test Official Charts Scrape", function () {
   //Good Refresh Token
@@ -35,18 +36,8 @@ describe("Test Official Charts Scrape", function () {
     it("Successfully returned expected Official Charts songs", async function () {
       const resultOfficialCharts =
         await scrapeOfficialCharts.getWebsiteContent();
-      mockOfficialChartsSongs = [
-        "RUNNING UP THAT HILL",
-        "AFRAID TO FEEL",
-        "AS IT WAS",
-        "BREAK MY SOUL",
-        "GREEN GREEN GRASS",
-        "GO",
-        "ABOUT DAMN TIME",
-        "MASSIVE",
-        "IFTK",
-        "LATE NIGHT TALKING",
-      ];
+
+      mockOfficialChartsSongs = sampleSongs.getMockOfficialChartsSongs();
       expect(resultOfficialCharts).to.eql(mockOfficialChartsSongs);
     });
 
