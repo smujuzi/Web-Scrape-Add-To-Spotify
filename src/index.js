@@ -1,6 +1,6 @@
-const spotifyFeatures = require("./spotify/features");
-const collectSongs = require("./src/song_matching");
-const spotifyAPI = require("./spotify/setup");
+const spotifyFeatures = require("../spotify/features");
+const collectSongs = require("./song_matching");
+const spotifyAPI = require("../spotify/setup");
 
 exports.handler = async (event, context, callback) => {
   const spotifyAPIHand = await spotifyAPI.setupAPI();

@@ -1,6 +1,6 @@
 const assert = require("chai").assert;
 const sinon = require("sinon");
-const index = require("../index");
+const index = require("../src/index");
 const spotifyFeatures = require("../spotify/features");
 const collectSongs = require("../src/song_matching");
 const spotifyAPI = require("../spotify/setup");

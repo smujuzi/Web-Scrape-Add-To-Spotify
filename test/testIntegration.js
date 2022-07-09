@@ -1,6 +1,6 @@
 const assert = require("chai").assert;
 const sinon = require("sinon");
-const index = require("../index");
+const index = require("../src/index");
 const credentials = require("../credentials-spotify.json");
 const spotifyAPIP = require("../spotify/setup");
 const axios = require("axios");
