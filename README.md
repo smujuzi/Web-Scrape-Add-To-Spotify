@@ -7,8 +7,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -18,23 +16,23 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/spotify.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/smujuzi/Web-Scrape-Add-To-Spotify">
+    <img src="images/node.png" alt="Logo" width="110" height="80">
   </a>
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/smujuzi/Web-Scrape-Add-To-Spotify">
     <img src="images/aws.png" alt="Logo" width="95" height="80">
+  </a>
+    <a href="https://github.com/smujuzi/Web-Scrape-Add-To-Spotify">
+    <img src="images/spotify.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Top Rated Songs</h3>
@@ -43,8 +41,6 @@
     A Spotify Playlist Generator!
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -68,9 +64,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 A project which keeps track of the currently trending songs on popular media publications and generates a playlist at regular intervals of the most popular songs across all the sources.
@@ -79,22 +74,23 @@ A project which keeps track of the currently trending songs on popular media pub
 
 ### Built With
 
-* [![Amazon][Amazon-Web-Services]][AWS-url]
-* [![Node][Node.js]][Node-url]
-* ![Powershell][Powershell]
+- [![Amazon][amazon-web-services]][aws-url]
+- [![Node][node.js]][node-url]
+- ![Powershell][powershell]
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-* Spotify Account
-* Amazon Web Services Account
-* npm
+- Spotify Account
+- Amazon Web Services Account
+- npm
   ```sh
   npm install npm@latest -g
   ```
@@ -109,7 +105,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    npm install
    ```
-<p align="right">(<a href="#top">back to top</a>)</p>
+   <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Running Locally
 
@@ -126,11 +122,12 @@ To get a local copy up and running follow these simple example steps.
 
 ### Running Unit and Integration Tests
 
-   ```sh
-   npm run test
-   ```
+```sh
+npm run test
+```
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/issues) for a full list of proposed features (and known issues).
@@ -138,6 +135,7 @@ See the [open issues](https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/issue
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
 Project Link: [https://github.com/smujuzi/Web-Scrape-Add-To-Spotify](https://github.com/smujuzi/Web-Scrape-Add-To-Spotify)
@@ -146,6 +144,7 @@ Project Link: [https://github.com/smujuzi/Web-Scrape-Add-To-Spotify](https://git
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
 [contributors-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
@@ -156,11 +155,8 @@ Project Link: [https://github.com/smujuzi/Web-Scrape-Add-To-Spotify](https://git
 [issues-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/stuartmujuzikasekende/
-
-[Amazon-Web-Services]: https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white
-[AWS-url]: https://aws.amazon.com/
-
-[Node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
-[Node-url]: https://nodejs.org/en/
-
-[Powershell]: https://img.shields.io/badge/Powershell-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white
+[amazon-web-services]: https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white
+[aws-url]: https://aws.amazon.com/
+[node.js]: https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white
+[node-url]: https://nodejs.org/en/
+[powershell]: https://img.shields.io/badge/Powershell-2CA5E0?style=for-the-badge&logo=powershell&logoColor=white
