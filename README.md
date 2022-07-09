@@ -68,7 +68,7 @@
 
 ## About The Project
 
-A project which keeps track of the currently trending songs on popular media publications and generates a playlist at regular intervals of the most popular songs across all the sources.
+A web scraping project which keeps track of the currently trending songs on popular media publications and generates a Spotify playlist at regular intervals of the most recurring songs.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
