@@ -127,13 +127,13 @@ Project Link: [https://github.com/smujuzi/Web-Scrape-Add-To-Spotify](https://git
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
 [contributors-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
 [forks-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
 [stars-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/smujuzi/Web-Scrape-Add-To-Spotify.svg?style=for-the-badge
 [issues-url]: https://github.com/smujuzi/Web-Scrape-Add-To-Spotify/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/stuartmujuzikasekende/
