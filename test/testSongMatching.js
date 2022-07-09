@@ -16,8 +16,8 @@ describe("Test Song Matching", async function () {
         spotifyFeatures,
         "getTodaysTopHitsPlaylist"
       );
-      mockListOfScrapedSongs = sampleSongs.getMockListOfScrapedSongs();
-      mockTopHitsSpotify = sampleSongs.getMockTopHitsSpotify();
+      const mockListOfScrapedSongs = sampleSongs.getMockListOfScrapedSongs();
+      const mockTopHitsSpotify = sampleSongs.getMockTopHitsSpotify();
 
       mockScraping.withArgs().returns(Promise.resolve(mockListOfScrapedSongs));
       mockSpotifyFeatures
@@ -27,7 +27,7 @@ describe("Test Song Matching", async function () {
 
     it("Returned correct top Tracks", async function () {
       const actualTopTracks = await songMatching.getTopTracks({});
-      mockTopTracks = ["AS IT WAS", "BREAK MY SOUL", "ABOUT DAMN TIME"];
+      const mockTopTracks = ["AS IT WAS", "BREAK MY SOUL", "ABOUT DAMN TIME"];
       assert.deepEqual(actualTopTracks, mockTopTracks);
     });
 

@@ -81,9 +81,20 @@ const getMockRapGeniusSongs = () => {
   return mockRapGeniusSongs;
 };
 
+const getFakeRecommendedSongs = () => {
+  const fakeRecommendedSongs = [
+    "AS IT WAS",
+    "BREAK MY SOUL",
+    "ABOUT DAMN TIME",
+  ];
+
+  return fakeRecommendedSongs;
+};
+
 module.exports = {
   getMockListOfScrapedSongs,
   getMockTopHitsSpotify,
   getMockOfficialChartsSongs,
   getMockRapGeniusSongs,
+  getFakeRecommendedSongs,
 };

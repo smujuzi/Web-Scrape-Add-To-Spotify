@@ -5,13 +5,15 @@ const spotifyFeatures = require("../spotify/features");
 const collectSongs = require("../src/song_matching");
 const spotifyAPI = require("../spotify/setup");
 const credentials = require("../credentials-spotify.json");
+const sampleSongs = require("./exampleData/sampleSongs");
+const sampleResponses = require("./exampleData/sampleResponses");
 
 describe("Test Index", async function () {
   describe("Handler", async function () {
     let mockSpotifyAPIIndex;
     let mockRecommendedSongs;
     let mockPlaylistCreated;
-    let fakeResponse = {};
+    let fakeResponse;
 
     beforeEach(function () {
       mockSpotifyAPIIndex = sinon.stub(spotifyAPI, "setupAPI");
@@ -21,11 +23,7 @@ describe("Test Index", async function () {
       mockSpotifyAPIIndex.withArgs().returns(Promise.resolve(fakeSpotifyAPI));
 
       mockRecommendedSongs = sinon.stub(collectSongs, "getTopTracks");
-      const fakeRecommendedSongs = [
-        "AS IT WAS",
-        "BREAK MY SOUL",
-        "ABOUT DAMN TIME",
-      ];
+      const fakeRecommendedSongs = sampleSongs.getFakeRecommendedSongs();
       mockRecommendedSongs
         .withArgs(fakeSpotifyAPI)
         .returns(Promise.resolve(fakeRecommendedSongs));
@@ -34,14 +32,7 @@ describe("Test Index", async function () {
         spotifyFeatures,
         "createTopTracksPLaylist"
       );
-      fakeResponse = {
-        statusCode: 201,
-        songs: [
-          "spotify:track:4LRPiXqCikLlN15c3yImP7",
-          "spotify:track:2KukL7UlQ8TdvpaA7bY3ZJ",
-          "spotify:track:1PckUlxKqWQs3RlWXVBLw3",
-        ],
-      };
+      fakeResponse = sampleResponses.getFakeResponseThree();
       mockPlaylistCreated
         .withArgs(fakeSpotifyAPI, fakeRecommendedSongs)
         .returns(Promise.resolve(fakeResponse));

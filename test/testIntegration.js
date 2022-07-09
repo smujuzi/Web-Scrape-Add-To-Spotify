@@ -1,7 +1,6 @@
 const assert = require("chai").assert;
 const sinon = require("sinon");
 const index = require("../index");
-const SpotifyWebApi = require("spotify-web-api-node");
 const credentials = require("../credentials-spotify.json");
 const spotifyAPIP = require("../spotify/setup");
 const axios = require("axios");
@@ -32,6 +31,7 @@ const officialURL = "https://www.officialcharts.com/charts/singles-chart/";
 const rapURL = "https://genius.com/";
 
 const sampleTracklists = require("./exampleData/sampleTracklists");
+const sampleResponses = require("./exampleData/sampleResponses");
 
 describe("Test Integration", async function () {
   this.timeout(20000);
@@ -48,7 +48,6 @@ describe("Test Integration", async function () {
       mockGet
         .withArgs(officialURL, headers)
         .returns(Promise.resolve({ data: htmlOfficial }));
-
       mockGet
         .withArgs(rapURL, headers)
         .returns(Promise.resolve({ data: htmlRapGenius }));
@@ -67,7 +66,7 @@ describe("Test Integration", async function () {
       mockPlaylist = {
         id: 3,
       };
-      tracklist = sampleTracklists.getTracklistFour();
+      const tracklist = sampleTracklists.getTracklistFour();
       mockSpotifyAPIIntegration.searchPlaylists
         .withArgs("Today's Top Hits")
         .returns(
@@ -89,10 +88,10 @@ describe("Test Integration", async function () {
           })
         );
 
-      let id = 3;
+      const id = 3;
 
-      let uriBadHabit = "spotify:track:1234";
-      let uriBreakMySoul = "spotify:track:5678";
+      const uriBadHabit = "spotify:track:1234";
+      const uriBreakMySoul = "spotify:track:5678";
 
       mockSpotifyAPIIntegration.createPlaylist.withArgs().returns(
         Promise.resolve({
@@ -135,11 +134,8 @@ describe("Test Integration", async function () {
     });
 
     it("Empty test", async function () {
-      fakeResponse = {
-        statusCode: 201,
-        songs: ["spotify:track:1234", "spotify:track:5678"],
-      };
       const response = await index.handler();
+      const fakeResponse = sampleResponses.getFakeResponseTwo();
       assert.deepEqual(response, fakeResponse);
     });
 

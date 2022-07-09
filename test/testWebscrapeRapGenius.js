@@ -33,9 +33,9 @@ describe("Test Rap Genius Scrape", function () {
     });
 
     it("Successfully returned expected Rap Genius songs", async function () {
-      resultRapGenius = await scrapeRapGenius.getWebsiteContent();
+      const resultRapGenius = await scrapeRapGenius.getWebsiteContent();
 
-      mockRapGeniusSongs = sampleSongs.getMockRapGeniusSongs();
+      const mockRapGeniusSongs = sampleSongs.getMockRapGeniusSongs();
       expect(resultRapGenius).to.eql(mockRapGeniusSongs);
     });
 

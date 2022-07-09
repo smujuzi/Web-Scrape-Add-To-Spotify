@@ -4,7 +4,6 @@ const spotifySetup = require("../spotify/setup");
 const sinon = require("sinon");
 
 describe("Test Spotify Set Up", function () {
-  //Good Refresh Token
   let mock;
   describe("Valid Refresh Token 1", function () {
     beforeEach(function () {
@@ -73,7 +72,6 @@ describe("Test Spotify Set Up", function () {
         );
     });
 
-    //assert error message displays for inability to refresh access token
     it("Failed to connect to Spotify", async function () {
       try {
         await spotifySetup.setupAPI();

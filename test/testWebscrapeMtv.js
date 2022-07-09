@@ -16,13 +16,11 @@ const headers = {
 };
 
 describe("Test MTV Scrape", function () {
-  //Good Refresh Token
   let mockM;
 
   describe("MTV Valid Songs returned", function () {
     beforeEach(function () {
       mockM = sinon.stub(axios, "get");
-      mockMTVSongs = [];
 
       mockM.withArgs("http://www.mtv.co.uk/music/charts", headers).returns(
         Promise.resolve({
@@ -36,6 +34,7 @@ describe("Test MTV Scrape", function () {
       await scrapeMTV.getWebsiteContent().then(async function (res) {
         resultMTV = await scrapeMTV.songTitles;
       });
+      const mockMTVSongs = [];
       expect(resultMTV).to.eql(mockMTVSongs);
     });
 

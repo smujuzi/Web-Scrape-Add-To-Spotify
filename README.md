@@ -111,6 +111,21 @@ To get a local copy up and running follow these simple example steps.
    ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Running Locally
+
+1. Uncomment the code in the index.js file
+
+2. Run the index.js file
+   ```sh
+   node index
+   ```
+
+### Running Unit and Integration Tests
+
+   ```sh
+   npm run test
+   ```
+
 <!-- ROADMAP -->
 ## Roadmap
 

@@ -13,3 +13,17 @@ exports.handler = async (event, context, callback) => {
   );
   return response;
 };
+
+// async function runLocal() {
+//   const spotifyAPIHand = await spotifyAPI.setupAPI();
+
+//   const recommendedSongs = await collectSongs.getTopTracks(spotifyAPIHand);
+
+//   const response = await spotifyFeatures.createTopTracksPLaylist(
+//     spotifyAPIHand,
+//     recommendedSongs
+//   );
+//   return response;
+// }
+
+// runLocal();

@@ -15,7 +15,7 @@ describe("Test Spotify Features", async function () {
       mockPlaylist = {
         id: 3,
       };
-      tracklist = sampleTracklists.getTracklistThree();
+      const tracklist = sampleTracklists.getTracklistThree();
       mockSpotifyAPIGet.searchPlaylists.withArgs("Today's Top Hits").returns(
         Promise.resolve({
           body: {
@@ -38,7 +38,7 @@ describe("Test Spotify Features", async function () {
       const actualTracklist = await spotifyFeatures.getTodaysTopHitsPlaylist(
         mockSpotifyAPIGet
       );
-      result = [
+      const result = [
         "I Like You (A Happier Song) (with Doja Cat)",
         "First Class",
         "Woman",

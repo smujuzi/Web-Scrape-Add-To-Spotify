@@ -25,7 +25,7 @@ Resources:
     Properties:
       Name: webscrape-spotify-cloudwatch2
       Description: "ScheduledRule"
-      ScheduleExpression: "rate(8 hours)"
+      ScheduleExpression: "rate(1 day)"
       State: "ENABLED"
       Targets:
         - Arn:
