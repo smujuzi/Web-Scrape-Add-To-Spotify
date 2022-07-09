@@ -7,7 +7,6 @@ const getWebsiteContent = async () => {
     const response = await axios.get(
       "https://www.officialcharts.com/charts/singles-chart/",
       {
-        // query URL without using browser cache
         headers: {
           "Cache-Control": "no-cache",
           Pragma: "no-cache",

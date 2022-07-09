@@ -1,12 +1,10 @@
 const cheerio = require("cheerio");
-// External dependencies
 const axios = require("axios");
 
 const getWebsiteContent = async () => {
   let songTitlesRap = [];
   try {
     const response = await axios.get("https://genius.com/", {
-      // query URL without using browser cache
       headers: {
         "Cache-Control": "no-cache",
         Pragma: "no-cache",
@@ -15,7 +13,7 @@ const getWebsiteContent = async () => {
     });
 
     const $ = cheerio.load(response.data);
-    count = 0;
+    let count = 0;
     $(".ChartSongdesktop__CoverAndTitle-sc-18658hh-0.jzapEV").each((i, el) => {
       count = count + 1;
       if (count <= 10) {

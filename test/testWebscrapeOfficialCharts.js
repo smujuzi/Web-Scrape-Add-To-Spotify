@@ -12,7 +12,6 @@ const htmlOfficial = fs
 const sampleSongs = require("./exampleData/sampleSongs");
 
 describe("Test Official Charts Scrape", function () {
-  //Good Refresh Token
   let mockAxios;
 
   describe("Official Charts Valid Songs returned", function () {
@@ -37,7 +36,7 @@ describe("Test Official Charts Scrape", function () {
       const resultOfficialCharts =
         await scrapeOfficialCharts.getWebsiteContent();
 
-      mockOfficialChartsSongs = sampleSongs.getMockOfficialChartsSongs();
+      const mockOfficialChartsSongs = sampleSongs.getMockOfficialChartsSongs();
       expect(resultOfficialCharts).to.eql(mockOfficialChartsSongs);
     });
 
