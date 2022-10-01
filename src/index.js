@@ -1,6 +1,8 @@
 const spotifyFeatures = require("../spotify/features");
 const collectSongs = require("./song_matching");
 const spotifyAPI = require("../spotify/setup");
+//Spotify handler facotry - Singleton pattern
+
 
 exports.handler = async (event, context, callback) => {
   const spotifyAPIHand = await spotifyAPI.setupAPI();
