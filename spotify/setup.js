@@ -1,20 +1,19 @@
 const SpotifyWebApi = require("spotify-web-api-node");
 const credentials = require("../credentials-spotify.json");
-const spotifyApi = new SpotifyWebApi(credentials);
+let spotifyApi;
 
 async function setupAPI() {
-  await spotifyApi.refreshAccessToken().then(
-    function (data) {
-      spotifyApi.setAccessToken(data.body["access_token"]);
-    },
-    function (err) {
-      throw err;
-    }
-  );
+
+  if(!spotifyApi)
+  {
+    spotifyApi = new SpotifyWebApi(credentials);
+    const data = await spotifyApi.refreshAccessToken();
+    spotifyApi.setAccessToken(data.body["access_token"]);
+  }
+  
   return spotifyApi;
 }
 
 module.exports = {
   setupAPI,
-  spotifyApi,
 };
