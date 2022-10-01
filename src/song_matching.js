@@ -29,7 +29,7 @@ async function getAllSongs(spotifyAPI) {
   const listOfScrapedSongs = await getScrapedSongs();
   const listOfTopHitsSongs = await getTopHitsSpotify(spotifyAPI);
 
-  let listOfAllSongs = [];
+  let listOfAllSongs = []; // listOfscrapedSongs...concat...listOfTopHitsSongs
   for (song of listOfScrapedSongs) {
     listOfAllSongs.push(song);
   }
@@ -43,7 +43,7 @@ async function getAllSongs(spotifyAPI) {
 async function getTopTracks(spotifyAPI) {
   let topTracks = [];
   const listOfSongs = await getAllSongs(spotifyAPI);
-  const songMap = await createMapTest(listOfSongs);
+  const songMap = await createMapTest(listOfSongs); //song count
   for (const [key, value] of songMap.entries()) {
     if (value > 1) {
       topTracks.push(key);
@@ -61,7 +61,7 @@ async function createMapTest(listOfSongs) {
   for (song of listOfSongs) {
     let songKey = await songSimilarity(song, songMap);
 
-    if (songKey == "N/A") {
+    if (songKey == null) {
       songMap.set(song, 1);
     } else {
       frequencyOfSong = songMap.get(songKey);
@@ -72,8 +72,8 @@ async function createMapTest(listOfSongs) {
   return songMap;
 }
 
-async function songSimilarity(currentSong, songMap) {
-  let result = "N/A";
+async function songSimilarity(currentSong, songMap) { //Don't unnecessarily use async. It slows down performance and creates an expectation of a call outside regular process(e.g. to an API)
+  let result = null;
   for (const [key, value] of songMap.entries()) {
     const comparison = fuzz.ratio(currentSong, key);
     if (comparison > 90) {
