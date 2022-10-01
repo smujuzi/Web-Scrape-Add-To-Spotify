@@ -10,7 +10,7 @@ const getWebsiteContent = async () => {
         Pragma: "no-cache",
         Expires: "0",
       },
-    });
+    }); // Make a response parameter into this function. Just to make testing easier
 
     const $ = cheerio.load(response.data);
     let count = 0;
