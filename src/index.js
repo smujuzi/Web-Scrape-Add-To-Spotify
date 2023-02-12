@@ -4,7 +4,6 @@ const spotifyAPI = require("../spotify/setup");
 
 exports.handler = async (event, context, callback) => {
   const spotifyAPIHand = await spotifyAPI.setupAPI();
-  const t = "hello";
 
   const recommendedSongs = await collectSongs.getTopTracks(spotifyAPIHand);
 
