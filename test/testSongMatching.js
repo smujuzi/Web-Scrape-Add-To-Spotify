@@ -27,7 +27,7 @@ describe("Test Song Matching", async function () {
 
     it("Returned correct top Tracks", async function () {
       const actualTopTracks = await songMatching.getTopTracks({});
-      const mockTopTracks = ["AS IT WAS", "BREAK MY SOUL", "ABOUT DAMN TIME"];
+      const mockTopTracks = ["A IT WAS", "BREAK MY SOUL", "ABOUT DAMN TIME"];
       assert.deepEqual(actualTopTracks, mockTopTracks);
     });
 
